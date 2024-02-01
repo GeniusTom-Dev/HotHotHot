@@ -39,7 +39,7 @@ yarn-debug.log
 # Fichiers de couverture
 /coverage
 
-# Fichiers et dossiers de configuration IDE spécifiques à WebStorm (et IntelliJ IDEA)
+# Fichiers et dossiers de configuration IDE spécifiques à WebStorm
 .idea
 *.iml
 
@@ -54,11 +54,15 @@ yarn-debug.log
 
 # Fichiers de package
 package-lock.json
+package.json
 yarn.lock
 
 # Fichiers de bundle
 *.tgz
 /public
+
+# Fichier de config
+tailwind.config.js
 
 # Divers
 .DS_Store
