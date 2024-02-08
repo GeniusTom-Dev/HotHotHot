@@ -1,7 +1,25 @@
-RewriteEngine on
-# Tout url != fichier...
+RewriteEngine On
+
+# S'assurer que mod_rewrite fonctionne sur le serveur
+Options +FollowSymLinks
+RewriteBase /
+
+# Rediriger les accès directs aux fichiers HTML dans /src/pages/ vers les URLs "propres"
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /src/pages/(.+)\.html\ HTTP/
+RewriteRule ^src/pages/(.+)\.html$ /$1 [R=301,L]
+
+# Réécriture pour accéder à /docs au lieu de /src/pages/docs.html
+RewriteRule ^docs$ src/pages/docs.html [L]
+
+# Réécriture pour accéder à /index au lieu de /src/pages/index.css (si nécessaire)
+RewriteRule ^index$ src/pages/index.css [L]
+
+# Pour les fichiers situés dans des dossiers sous /src/pages
 RewriteCond %{REQUEST_FILENAME} !-f
-# et url != repetoire...
 RewriteCond %{REQUEST_FILENAME} !-d
-# Sera redirigée sur le fichier index.php sous le nom d'url !
-RewriteRule ^(.*)$ index.html?url=$1 [QSA,L]
+RewriteRule ^([a-zA-Z0-9_-]+)$ /src/pages/$1.html [L]
+
+# Réécriture pour les dossiers et les fichiers dans les sous-dossiers de /src/pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ /src/pages/$1/$2.html [L]
