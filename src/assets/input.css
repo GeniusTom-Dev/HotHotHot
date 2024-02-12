@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+    --card-opacity: 60%;
 }
 
 .background {
@@ -10,6 +11,6 @@
 }
 
 .card {
-    /*background: linear-gradient(-30deg, rgba(6, 15, 44, 1) 0%, rgba(8, 33, 92, 1) 54%, rgba(6, 11, 39, 1) 100%);*/
-    @apply m-auto rounded-xl ;
+    background: linear-gradient(-30deg, rgba(6, 15, 44, var(--card-opacity)) 0%, rgba(0, 19, 107, var(--card-opacity)) 54%, rgba(6, 11, 39, var(--card-opacity)) 100%);
+    @apply rounded-xl ;
 }
