@@ -4,22 +4,22 @@ RewriteEngine On
 Options +FollowSymLinks
 RewriteBase /
 
-# Rediriger les accès directs aux fichiers HTML dans /src/pages/ vers les URLs "propres"
+# Rediriger les accès directs aux fichiers HTML dans /src/view/ vers les URLs "propres"
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /src/pages/(.+)\.html\ HTTP/
 RewriteRule ^src/pages/(.+)\.html$ /$1 [R=301,L]
 
-# Réécriture pour accéder à /docs au lieu de /src/pages/docs.html
+# Réécriture pour accéder à /docs au lieu de /src/view/docs.html
 RewriteRule ^docs$ src/pages/docs.html [L]
 
-# Réécriture pour accéder à /index au lieu de /src/pages/index.css (si nécessaire)
+# Réécriture pour accéder à /index au lieu de /src/view/index.css (si nécessaire)
 RewriteRule ^index$ src/pages/index.css [L]
 
-# Pour les fichiers situés dans des dossiers sous /src/pages
+# Pour les fichiers situés dans des dossiers sous /src/view
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_-]+)$ /src/pages/$1.html [L]
 
-# Réécriture pour les dossiers et les fichiers dans les sous-dossiers de /src/pages
+# Réécriture pour les dossiers et les fichiers dans les sous-dossiers de /src/view
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ /src/pages/$1/$2.html [L]

@@ -9,14 +9,12 @@ export class Temperature {
     initWebsocket() {
         this.socket = new WebSocket(this.webSocketUrl);
 
-
         this.socket.onopen = (event) => {
-            this.socket.send("Je vien d'arriver");
+            this.socket.send("Je viens d'arriver");
 
             this.socket.onmessage = (event) => {
                 this.analyzeData(event.data);
             }
-
         }
     }
 
