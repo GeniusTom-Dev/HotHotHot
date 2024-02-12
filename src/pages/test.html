@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+<div class="min-h-screen bg-gray-900 flex flex-col">
+    <!-- Sidebar -->
+    <div class="w-64 bg-gray-800 p-4 flex-shrink-0">
+        <div class="flex items-center justify-between mb-8">
+            <img alt="Vision UI Kit" class="h-8" src="img.png">
+            <button class="text-gray-400 hover:text-gray-200 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="space-y-4">
+            <a class="flex items-center px-4 py-2 text-gray-200 bg-gray-700 rounded-md" href="#">
+                <svg class="h-6 w-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.523 5.754 19 7.5 19s3.332-.477 4.5-1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13c-1.168.776-2.753 1.253-4.5 1.253s-3.332-.477-4.5-1.253"
+                          stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+                Dashboard
+            </a>
+            <a class="flex items-center px-4 py-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-md"
+               href="#">
+                <svg class="h-6 w-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+                Tables
+            </a>
+            <a class="flex items-center px-4 py-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-md"
+               href="#">
+                <svg class="h-6 w-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+                Billing
+            </a>
+            <a class="flex items-center px-4 py-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-md"
+               href="#">
+                <svg class="h-6 w-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+                Settings
+            </a>
+            <a class="flex items-center px-4 py-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-md"
+               href="#">
+                <svg class="h-6 w-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                    <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between bg-gray-800">
+            <div class="flex items-center space-x-2">
+                <img alt="User avatar" class="h-8 w-8 rounded-full" src="img.png">
+                <span class="text-gray-200">Need Help?</span>
+            </div>
+            <button class="text-gray-400 hover:text-gray-200 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                    <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- Main content -->
+    <div class="flex-1 bg-gray-900 p-4 overflow-auto">
+        <!-- Navbar -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center space-x-4">
+                <img alt="Vision UI Kit" class="h-8" src="img.png">
+                <span class="text-gray-200 text-xl font-semibold">Vision UI Kit</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                    <span class="text-gray-200">Mark Johnson</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                    <span class="text-gray-200">3</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 0 24 24" stroke="currentColor" stroke-linecap="round"
+                              stroke-linejoin="round" stroke-width="2"/>
+                    </svg>
+                    <span class="text-gray-200">7</span></div>
+                <button class="text-gray-400 focus:outline-none">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+        </div> <!-- Stats cards -->
+        <div class="grid gap-4 grid-cols-4 mb-8">
+            <div class="bg-gray-800 flex items-center justify-between p-4 rounded-lg shadow-md">
+                <div class="text-gray-200"><span class="text-2xl font-bold">$35.000</span>
+                    <p class="text-sm">Today’s Income</p></div>
+                <div class="bg-green-500 p-2 rounded-full">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="bg-gray-800 flex items-center justify-between p-4 rounded-lg shadow-md">
+                <div class="text-gray-200"><span class="text-2xl font-bold">2.300</span>
+                    <p class="text-sm">Total Users</p></div>
+                <div class="bg-blue-500 p-2 rounded-full">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="bg-gray-800 flex items-center justify-between p-4 rounded-lg shadow-md">
+                <div class="text-gray-200"><span class="text-2xl font-bold">+5.032</span>
+                    <p class="text-sm">New Clients</p></div>
+                <div class="bg-red-500 p-2 rounded-full">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="bg-gray-800 flex items-center justify-between p-4 rounded-lg shadow-md">
+                <div class="text-gray-200"><span class="text-2xl font-bold">$175.000</span>
+                    <p class="text-sm">Total Sales</p></div>
+                <div class="bg-yellow-500 p-2 rounded-full">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"/>
+                        <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div> <!-- Widgets -->
+        <div class="grid gap-4 grid-cols-3">
+            <div class="bg-gray-800 col-span-2 p-4 rounded-lg shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-200"><span class="text-lg font-semibold">Sales overview</span>
+                        <p class="text-sm">First semester 2021</p></div>
+                    <div class="flex items-center space-x-2">
+                        <button class="text-gray-400 focus:outline-none">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <button class="text-gray-400 focus:outline-none">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="h-64"> <!-- Area chart goes here --> </div>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-200"><span class="text-lg font-semibold">Active Users</span>
+                        <p class="text-sm">Last 30 days</p></div>
+                    <div class="flex items-center space-x-2">
+                        <button class="text-gray-400 focus:outline-none hover:text-gray-200">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <button class="text-gray-400 focus:outline-none hover:text-gray-200">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="h-64"> <!-- Bar chart goes here --> </div>
+                <div class="flex items-center justify-between mt-4">
+                    <div class="text-gray-200"><span class="text-lg font-bold">1.230</span>
+                        <p class="text-sm">Visitors</p></div>
+                    <div class="text-gray-200"><span class="text-lg font-bold">860</span>
+                        <p class="text-sm">Sign ups</p></div>
+                    <div class="text-gray-200"><span class="text-lg font-bold">370</span>
+                        <p class="text-sm">Purchases</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="grid gap-4 grid-cols-3 mt-8">
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-200"><span class="text-lg font-semibold">Satisfaction Rate</span>
+                        <p class="text-sm">Final Report on June</p></div>
+                    <div class="flex items-center space-x-2">
+                        <button class="text-gray-400 focus:outline-none hover:text-gray-200">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <button class="text-gray-400 focus:outline-none hover:text-gray-200">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="h-64"> <!-- Gauge chart goes here --> </div>
+                <div class="flex items-center justify-center mt-4">
+                    <span class="text-gray-200 font-bold text-4xl">95%</span></div>
+            </div>
+            <div class="bg-gray-800 col-span-2 p-4 rounded-lg shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-200"><span class="text-lg font-semibold">Referral Tracking</span>
+                        <p class="text-sm">145 people</p></div>
+                    <div class="flex items-center space-x-2">
+                        <button class="text-gray-400 focus:outline-none hover:text-gray-200">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <button class="text-gray-400 focus:outline-none hover:text-gray-200">
+                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                                <path d="M12 14a5 5 0 00-5 5v2h10v-2a5 5 0 00-5-5z" stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="h-64"> <!-- Circular chart goes here --> </div>
+                <div class="flex items-center justify-center mt-4"><span class="text-gray-200 font-bold text-4xl">9.3</span>
+                    <span class="text-gray-200 ml-2 text-lg">Score</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html> stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
