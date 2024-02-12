@@ -1,5 +1,5 @@
-import {Temperature} from "./Temperature.js";
+import {TemperatureObservable} from "./TemperatureObservable.js";
 
 export {
-    Temperature
+    TemperatureObservable
 }

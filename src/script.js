@@ -1,5 +1,6 @@
 import {Controller} from "./controllers/";
-import {Temperature} from "./models/";
+import {TemperatureObservable} from "./models/";
 
 let controller = new Controller();
-let temperature = new Temperature(controller);
+let temperature = new TemperatureObservable();
+temperature.addObserver(controller);

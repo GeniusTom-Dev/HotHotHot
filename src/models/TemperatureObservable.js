@@ -1,9 +1,13 @@
-export class Temperature {
+export class TemperatureObservable {
 
-    constructor(controller) {
-        this.controller = controller;
+
+    constructor() {
         this.webSocketUrl = 'wss://ws.hothothot.dog:9502';
         this.initWebsocket();
+    }
+
+    addObserver(controller) {
+        this.controller = controller;
     }
 
     initWebsocket() {
