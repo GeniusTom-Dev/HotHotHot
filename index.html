@@ -4,10 +4,108 @@
     <meta charset="UTF-8">
     <title>Title</title>
 <!--    <script src="src/script.js" type="module"></script>-->
+    <link rel="stylesheet" href="src/assets/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="src/script.js" type="module"></script>
 </head>
-<body>
-    <a href="src/pages/home.html">Home</a>
-    <a href="src/pages/docs.html">docs</a>
+<style>
+    :root {
+        --card-opacity: 60%;
+    }
+    .card {
+        background: linear-gradient(-30deg, rgba(6, 15, 44, var(--card-opacity)) 0%, rgba(0, 19, 107, var(--card-opacity)) 54%, rgba(6, 11, 39, var(--card-opacity)) 100%);
+    }
+</style>
+<body class="background h-[100vh] bg-no-repeat p-2 space-y-1">
+    <nav class="bg-[#060b26] bg-opacity-70 rounded-xl p-2">
+        <ul class="flex flex-row space-x-2 justify-end">
+            <li class="text-slate-300"><a href="#">Deconnexion</a></li>
+            <li class="text-slate-300"><a href="#">Informations</a></li>
+            <li class="text-slate-300"><a href="#">retour</a></li>
+        </ul>
+    </nav>
+
+    <div class="flex flex-row space-x-2">
+        <ul>
+            <li class="text-slate-300"><a href="src/pages/home.html">Home</a></li>
+            <li class="text-slate-300"><a href="src/pages/docs.html">docs</a></li>
+        </ul>
+    </div>
+
+    <div class="card w-10/12 h-1/5"></div>
+    <div class="card w-2/3 h-1/5"></div>
+    <div class="card w-2/3 h-1/3 flex items-center justify-center">
+        <canvas id="myLineChart"></canvas>
+    </div>
+    <script>
+        // Données du graphique
+        const data = [0,4,8,2,5,6,3,9,10,5,15];
+
+        // Récupérer le canevas et son contexte
+        const canvas = document.getElementById('myLineChart');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.clientWidth * 4 / 5;
+        canvas.height = canvas.parentElement.clientHeight * 4 / 5;
+        canvasWidth = canvas.width-10 ;
+        canvasHeight = canvas.height-10;
+
+        // Dessiner le cadrillage
+        const gridSize = canvasHeight / 6;
+        const gridWidth = canvasWidth / data.length;
+        const gridColor = 'rgba(0, 123, 255, 30%)';
+
+        //dessin des lignes verticales
+        for (let x = gridWidth; x <= canvasWidth; x += gridWidth) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.strokeStyle = gridColor;
+            ctx.stroke();
+        }
+        //dessin des lignes horizontales
+        for (let y = gridSize; y <= canvasHeight; y += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(20, y);
+            ctx.lineTo(canvas.width+10, y);
+            ctx.strokeStyle = gridColor;
+            ctx.stroke();
+        }
+        // Afficher des valeurs numériques le long de l'axe y (à gauche)
+        ctx.fillStyle = 'black';
+        ctx.font = '15px Arial';
+        ctx.textAlign = 'left';
+        for (let i = 0; i <= 5; i++) {
+            const value = Math.max(...data) * (i / 5);
+            const y = canvasHeight - gridSize * i;
+            ctx.fillText(value.toFixed(0), 0, y + 5);
+        }
+
+        const gridHeightunit = gridSize/ (Math.max(...data) / 5);
+        // Calculer les points de la courbe
+        const dataPoints = data.map((value, index) => ({
+            x: (index+1) * gridWidth,
+            y: canvasHeight - gridHeightunit * value,
+        }));
+
+        // Dessiner la courbe
+        ctx.beginPath();
+        for (let i = 0; i < dataPoints.length; i++) {
+            ctx.lineTo(dataPoints[i].x, dataPoints[i].y);
+        }
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // Dessiner les points
+        for (let i = 0; i < dataPoints.length; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = 'blue';
+            ctx.arc(dataPoints[i].x, dataPoints[i].y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = '#050d2a';
+            ctx.fill();
+            ctx.stroke();
+        }
+    </script>
+
 </body>
 </html>
