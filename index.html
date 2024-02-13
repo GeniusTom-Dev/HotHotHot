@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 <!--    <script src="src/script.js" type="module"></script>-->
+    <link rel= "manifest" href= "src/assets/manifest.webmanifest">
     <link rel="stylesheet" href="src/assets/output.css">
+    <link rel="icon" type="image/vnd.icon" href="/src/assets/images/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="src/script.js" type="module"></script>
 </head>
 <body class="background h-[100vh] bg-no-repeat p-2 space-y-1 flex flex-col items-center">
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('/src/sw.js')
+            .then(() => { console.log('Service Worker Registered'); });
+    }
+</script>
     <nav class="bg-[#060b26] bg-opacity-70 rounded-xl p-5 w-full flex flex-row justify-between">
         <ul class="flex flex-row space-x-2 justify-end">
             <li class="text-slate-300"><a href="#">Home</a></li>
@@ -37,6 +46,9 @@
     <div id="graph" class="card w-2/3 h-[60vh] items-center justify-center" style="display: none">
         <canvas id="lineChart"></canvas>
     </div>
+
+    <button class="add-button" style="display: none">Ajouter</button>
+
 
 
 </body>

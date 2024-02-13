@@ -1,0 +1,15 @@
+{
+    "name": "HOTHOTHOT",
+    "short_name": "hot",
+    "description": "Affichage graphique des températures récupérées par des capteurs",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "/src/assets/images/hothothot.jpg",
+        "sizes": "512x512",
+        "type": "image/jpg"
+      }
+    ],
+    "background_color": "grey"
+}

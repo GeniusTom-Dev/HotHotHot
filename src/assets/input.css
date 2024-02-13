@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-    --card-opacity: 80%;
+    --card-opacity: 70%;
 }
 
 .background {
