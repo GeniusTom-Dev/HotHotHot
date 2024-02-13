@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     font-family: "DM Serif Display", serif;
     font-weight: 400;
     font-style: normal;
@@ -13,9 +13,9 @@
 
 :root {
     --card-opacity: 80%;
-    --top-navbar: rgba(5, 11, 38,0.5);
-    --bottom-navbar: rgba(0, 32, 86,0.5);
-    --top-navbar-logo-background: rgba(255,255,255,0.2);
+    --top-navbar: rgba(5, 11, 38, 0.5);
+    --bottom-navbar: rgba(0, 32, 86, 0.5);
+    --top-navbar-logo-background: rgba(255, 255, 255, 0.2);
 }
 
 .background {
@@ -27,27 +27,27 @@
     @apply rounded-xl ;
 }
 
-.glass{
-    background: linear-gradient(135deg,rgba(255, 255, 255, 0.1) , rgba(255, 255, 255, 0.05));
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba( 0, 0, 0, 0.37 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.navbar{
+.navbar {
     @apply w-4/5 h-12 rounded-[20px] flex items-center cursor-pointer;
 }
 
-.navbar:not(.selected):hover{
+.navbar:not(.selected):hover {
     @apply bg-[var(--top-navbar-logo-background)];
 }
 
-.selected{
+.selected {
     @apply bg-[var(--top-navbar-logo-background)];
 }
 
-.active{
+.active {
     @apply bg-[var(--top-navbar-logo-background)];
 }

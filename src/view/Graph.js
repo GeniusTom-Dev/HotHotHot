@@ -2,8 +2,8 @@ export class Graph {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
-        this.canvas.width = window.innerWidth*2/3 * 4/5;
-        this.canvas.height = window.innerHeight*2/3 * 4/5;
+        this.canvas.width = window.innerWidth * 2 / 3 * 4 / 5;
+        this.canvas.height = window.innerHeight * 2 / 3 * 4 / 5;
         this.canvasWidth = this.canvas.width - 10;
         this.canvasHeight = this.canvas.height - 10;
         this.gridSize = this.canvasHeight / 6;

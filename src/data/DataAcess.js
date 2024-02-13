@@ -6,10 +6,10 @@ export class DataAccess {
 
     }
 
-    initDb(){
+    initDb() {
         const request = indexedDB.open("dbTemp", 3);
         request.onerror = (event) => {
-            console.log("error: " + event.target.errorCode);
+            // console.log("error: " + event.target.errorCode);
             return false;
         };
 
@@ -20,26 +20,26 @@ export class DataAccess {
         return false;
     }
 
-    initStore(){
+    initStore() {
         const objectStore = this.db.createObjectStore("temp");
-        objectStore.createIndex("origin", "origin", { unique: false });
-        objectStore.createIndex("value", "value", { unique: false });
-        objectStore.createIndex("timestamp", "timestamp", { unique: false });
+        objectStore.createIndex("origin", "origin", {unique: false});
+        objectStore.createIndex("value", "value", {unique: false});
+        objectStore.createIndex("timestamp", "timestamp", {unique: false});
     }
 
-    addItem(data){
-
-    }
-
-    getItem(id){
+    addItem(data) {
 
     }
 
-    updateItem(data){
+    getItem(id) {
 
     }
 
-    deleteItem(id){
+    updateItem(data) {
+
+    }
+
+    deleteItem(id) {
 
     }
 

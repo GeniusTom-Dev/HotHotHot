@@ -6,13 +6,13 @@ export class Dashboard {
             this.callLink = "http://api.weatherapi.com/v1/current.json?key=" + this.apiKey + "&q=" + this.location;
             this.getData();
         });
-        
+
         this.dashboard = document.getElementById('dashboard');
         this.history = document.getElementById('history');
 
         this.switchDashboardButton = document.getElementById('switchDashboardButton');
         this.switchHistoryButton = document.getElementById('switchHistoryButton');
-        
+
         this.ongletDashboard = document.getElementById('ongletDashboard');
         this.ongletHistory = document.getElementById('ongletHistory');
 
@@ -38,7 +38,7 @@ export class Dashboard {
         const reponse = await fetch(this.callLink);
         const data = await reponse.json();
         const dataLocation = data.current.condition.text;
-        console.log(dataLocation);
+        // console.log(dataLocation);
     }
 
     initActions() {

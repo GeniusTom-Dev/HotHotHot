@@ -1,21 +1,22 @@
 let CACHE = 'hothothotPwa1';
 
 // On install, cache some resource.
-self.addEventListener('install', function(evt) {
+self.addEventListener('install', function (evt) {
     evt.waitUntil(caches.open(CACHE).then(function (cache) {
         cache.addAll([
             "/index.html",
             // "/script.js",
             "/src/assets/images/thermometer512x512.png",
             "/serviceWorker.js",
-        ]).then(r => console.log('cache added'));
+        ])
+        // .then(r => console.log());
     }));
 });
 
 // On fetch, use cache but update the entry with the latest contents
 // from the server.
-self.addEventListener('fetch', function(evt) {
-    console.log('The service worker is serving the asset.');
+self.addEventListener('fetch', function (evt) {
+    // console.log('The service worker is serving the asset.');
     // You can use `respondWith()` to answer ASAP...
     evt.respondWith(fromCache(evt.request));
     // ...and `waitUntil()` to prevent the worker to be killed until
@@ -32,7 +33,7 @@ self.addEventListener('fetch', function(evt) {
 // resource. Notice that in case of no matching, the promise still resolves
 // but it does with `undefined` as value.
 function fromCache(request) {
-    console.log('match cache request');
+    // console.log('match cache request');
     return caches.open(CACHE).then(function (cache) {
         return cache.match(request);
     });
@@ -42,7 +43,7 @@ function fromCache(request) {
 // Update consists in opening the cache, performing a network request and
 // storing the new response data.
 function update(request) {
-    console.log('update cache');
+    // console.log('update cache');
     return caches.open(CACHE).then(function (cache) {
         return fetch(request).then(function (response) {
             return cache.put(request, response.clone()).then(function () {
