@@ -7,7 +7,7 @@ export class Graph {
         this.canvasWidth = this.canvas.width - 10;
         this.canvasHeight = this.canvas.height - 10;
         this.gridSize = this.canvasHeight / 6;
-        this.gridColor = 'rgba(0, 123, 255, 30%)';
+        this.gridColor = 'rgba(255,255,255,0.2)';
     }
 
     drawGrid(data) {
@@ -29,7 +29,7 @@ export class Graph {
     }
 
     drawYAxisValues(data) {
-        this.ctx.fillStyle = 'black';
+        this.ctx.fillStyle = 'white';
         this.ctx.font = '15px Arial';
         this.ctx.textAlign = 'left';
         for (let i = 0; i <= 5; i++) {
@@ -53,7 +53,7 @@ export class Graph {
         for (let i = 0; i < dataPoints.length; i++) {
             this.ctx.lineTo(dataPoints[i].x, dataPoints[i].y);
         }
-        this.ctx.strokeStyle = 'blue';
+        this.ctx.strokeStyle = 'black';
         this.ctx.lineWidth = 3;
         this.ctx.stroke();
     }
@@ -61,9 +61,10 @@ export class Graph {
     drawPoints(dataPoints) {
         for (let i = 0; i < dataPoints.length; i++) {
             this.ctx.beginPath();
-            this.ctx.strokeStyle = 'blue';
+            this.ctx.strokeStyle = 'white';
             this.ctx.arc(dataPoints[i].x, dataPoints[i].y, 3, 0, Math.PI * 2);
-            this.ctx.fillStyle = '#050d2a';
+            // this.ctx.fillStyle = '#050d2a';
+            this.ctx.fillStyle = 'white';
             this.ctx.fill();
             this.ctx.stroke();
         }
