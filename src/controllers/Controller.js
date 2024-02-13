@@ -7,10 +7,12 @@ export class Controller {
         this.baliseInTemperature = document.getElementById("baliseInTemperature");
         this.baliseOutTemperature = document.getElementById("baliseOutTemperature");
     }
+
     update(data) {
         //{"HotHotHot":"Api v1.0","capteurs":
         // [{"type":"Thermique","Nom":"interieur","Valeur":"15.8","Timestamp":1707406883},
-        // {"type":"Thermique","Nom":"exterieur","Valeur":"14.8","Timestamp":1707406883}]}
+        // {"type":"Thermique","Nom":"exterieur","Valeur":"14.8","Timestamp":1707406883}]
+        // }
         for (let i = 0; i < data["capteurs"].length; i++) {
             switch (data["capteurs"][i]["Nom"]) {
                 case "interieur":
@@ -21,7 +23,6 @@ export class Controller {
                     break;
             }
         }
-
         this.showInTemperature();
         this.showOutTemperature();
     }

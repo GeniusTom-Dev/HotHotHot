@@ -4,10 +4,11 @@ export class TemperatureObservable {
     constructor() {
         this.webSocketUrl = 'wss://ws.hothothot.dog:9502';
         this.initWebsocket();
+        this.observers = [];
     }
 
     addObserver(controller) {
-        this.controller = controller;
+        this.observers.push(controller);
     }
 
     initWebsocket() {
@@ -23,6 +24,8 @@ export class TemperatureObservable {
     }
 
     analyzeData(data) {
-        this.controller.update(JSON.parse(data));
+        for (let i = 0; i < this.observers.length; i++) {
+            this.observers[i].update(JSON.parse(data));
+        }
     }
 }

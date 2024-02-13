@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="src/script.js" type="module"></script>
 </head>
-<body class="background h-[100%] bg-no-repeat p-2 space-y-1 flex flex-col justify-center items-center">
+<body class="background h-[100vh] bg-no-repeat p-2 space-y-1 flex flex-col items-center">
     <nav class="bg-[#060b26] bg-opacity-70 rounded-xl p-5 w-full flex flex-row justify-between">
         <ul class="flex flex-row space-x-2 justify-end">
             <li class="text-slate-300"><a href="#">Home</a></li>
@@ -20,84 +20,24 @@
         </ul>
     </nav>
 
-    <div class="flex flex-row justify-center space-x-2">
-        <div class="card px-5 py-2">Données</div>
-        <div class="card px-5 py-2">Graphiques</div>
+    <div class="flex flex-row justify-center align-center space-x-2">
+        <div id="dataButton" class="card px-5 py-2 cursor-crosshair">Données</div>
+        <div id="graphButton" class="card px-5 py-2 cursor-crosshair">Graphiques</div>
     </div>
 
-    <div class="card w-2/3 h-[60vh] flex items-center justify-center">
-        <canvas id="myLineChart"></canvas>
+    <div id="data" class="w-full h-[50vh] flex-row items-center justify-center space-x-[10vw]" style="display: flex">
+        <div class="card h-[20vh] w-[20vw] flex items-center justify-center">
+            5
+        </div>
+        <div class="card h-[20vh] w-[20vw] flex items-center justify-center">
+            5
+        </div>
     </div>
-    <div class="card w-2/3 h-[20vh]"></div>
-    <script>
-        // Données du graphique
-        const data = [0,4,8,20,2,5,6,3,9,10,5,15];
 
-        // Récupérer le canevas et son contexte
-        const canvas = document.getElementById('myLineChart');
-        const ctx = canvas.getContext('2d');
-        canvas.width = canvas.parentElement.clientWidth * 4 / 5;
-        canvas.height = canvas.parentElement.clientHeight * 4 / 5;
-        canvasWidth = canvas.width-10 ;
-        canvasHeight = canvas.height-10;
+    <div id="graph" class="card w-2/3 h-[60vh] items-center justify-center" style="display: none">
+        <canvas id="lineChart"></canvas>
+    </div>
 
-        // Dessiner le cadrillage
-        const gridSize = canvasHeight / 6;
-        const gridWidth = canvasWidth / data.length;
-        const gridColor = 'rgba(0, 123, 255, 30%)';
-
-        //dessin des lignes verticales
-        for (let x = gridWidth; x <= canvasWidth; x += gridWidth) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, canvas.height);
-            ctx.strokeStyle = gridColor;
-            ctx.stroke();
-        }
-        //dessin des lignes horizontales
-        for (let y = gridSize; y <= canvasHeight; y += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(20, y);
-            ctx.lineTo(canvas.width+10, y);
-            ctx.strokeStyle = gridColor;
-            ctx.stroke();
-        }
-        // Afficher des valeurs numériques le long de l'axe y (à gauche)
-        ctx.fillStyle = 'black';
-        ctx.font = '15px Arial';
-        ctx.textAlign = 'left';
-        for (let i = 0; i <= 5; i++) {
-            const value = Math.max(...data) * (i / 5);
-            const y = canvasHeight - gridSize * i;
-            ctx.fillText(value.toFixed(0), 0, y + 5);
-        }
-
-        const gridHeightunit = gridSize/ (Math.max(...data) / 5);
-        // Calculer les points de la courbe
-        const dataPoints = data.map((value, index) => ({
-            x: (index+1) * gridWidth,
-            y: canvasHeight - gridHeightunit * value,
-        }));
-
-        // Dessiner la courbe
-        ctx.beginPath();
-        for (let i = 0; i < dataPoints.length; i++) {
-            ctx.lineTo(dataPoints[i].x, dataPoints[i].y);
-        }
-        ctx.strokeStyle = 'blue';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-
-        // Dessiner les points
-        for (let i = 0; i < dataPoints.length; i++) {
-            ctx.beginPath();
-            ctx.strokeStyle = 'blue';
-            ctx.arc(dataPoints[i].x, dataPoints[i].y, 3, 0, Math.PI * 2);
-            ctx.fillStyle = '#050d2a';
-            ctx.fill();
-            ctx.stroke();
-        }
-    </script>
 
 </body>
 </html>
