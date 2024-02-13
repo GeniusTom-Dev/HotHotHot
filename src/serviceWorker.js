@@ -6,8 +6,8 @@ self.addEventListener('install', function(evt) {
         cache.addAll([
             "/index.html",
             // "/script.js",
-            "/src/assets/images/hothothot.jpg",
-            "/sw.js",
+            "/src/assets/images/thermometer512x512.png",
+            "/serviceWorker.js",
         ]).then(r => console.log('cache added'));
     }));
 });

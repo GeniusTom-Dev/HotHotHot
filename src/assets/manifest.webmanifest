@@ -6,9 +6,9 @@
     "display": "standalone",
     "icons": [
       {
-        "src": "/src/assets/images/hothothot.jpg",
+        "src": "/src/assets/images/thermometer.png",
         "sizes": "512x512",
-        "type": "image/jpg"
+        "type": "image/png"
       }
     ],
     "background_color": "grey"

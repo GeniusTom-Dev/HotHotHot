@@ -11,13 +11,6 @@
     <script src="src/script.js" type="module"></script>
 </head>
 <body class="background h-[100vh] bg-no-repeat p-2 space-y-1 flex flex-col items-center">
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-            .register('/src/sw.js')
-            .then(() => { console.log('Service Worker Registered'); });
-    }
-</script>
     <nav class="bg-[#060b26] bg-opacity-70 rounded-xl p-5 w-full flex flex-row justify-between">
         <ul class="flex flex-row space-x-2 justify-end">
             <li class="text-slate-300"><a href="#">Home</a></li>
@@ -47,7 +40,7 @@
         <canvas id="lineChart"></canvas>
     </div>
 
-    <button class="add-button" style="display: none">Ajouter</button>
+    <button class="add-button">Ajouter</button>
 
 
 
