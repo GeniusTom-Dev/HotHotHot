@@ -5,11 +5,8 @@ self.addEventListener('install', function (evt) {
     evt.waitUntil(caches.open(CACHE).then(function (cache) {
         cache.addAll([
             "/index.html",
-            // "/script.js",
-            "/src/assets/images/thermometer512x512.png",
-            "/serviceWorker.js",
-        ])
-        // .then(r => console.log());
+            "/src/assets/output.css",
+        ]).then(r => console.log(r));
     }));
 });
 
@@ -62,7 +59,7 @@ function refresh(response) {
             // [ETag](https://en.wikipedia.org/wiki/HTTP_ETag) the client can
             // check if the content has changed.
 
-            var message = {
+            let message = {
                 type: 'refresh',
                 url: response.url,
                 // Notice not all servers return the ETag header. If this is not
