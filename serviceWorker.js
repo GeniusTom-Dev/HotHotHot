@@ -1,19 +1,23 @@
-let CACHE = 'hothothotPwa1';
+let CACHE = 'HotHotHot';
+self.addEventListener('install', e => {
+    e.waitUntil(
+        caches.open(CACHE).then(cache => {
+            cache.addAll([
+                "index.html",
+                "src/assets/",
+                "src/controllers/",
+                "src/models/",
+                "src/data/",
+                "src/view/",
 
-// On install, cache some resource.
-self.addEventListener('install', function (evt) {
-    evt.waitUntil(caches.open(CACHE).then(function (cache) {
-        cache.addAll([
-            "/index.html",
-            "/src/assets/output.css",
-        ]).then(r => console.log(r));
-    }));
+            ]).then(r => console.log(r + " : OK"));
+        })// à adapter à l'URL du projet
+    );
 });
 
 // On fetch, use cache but update the entry with the latest contents
 // from the server.
-self.addEventListener('fetch', function (evt) {
-    // console.log('The service worker is serving the asset.');
+self.addEventListener('fetch', function(evt) {
     // You can use `respondWith()` to answer ASAP...
     evt.respondWith(fromCache(evt.request));
     // ...and `waitUntil()` to prevent the worker to be killed until
@@ -30,7 +34,7 @@ self.addEventListener('fetch', function (evt) {
 // resource. Notice that in case of no matching, the promise still resolves
 // but it does with `undefined` as value.
 function fromCache(request) {
-    // console.log('match cache request');
+
     return caches.open(CACHE).then(function (cache) {
         return cache.match(request);
     });
@@ -40,7 +44,6 @@ function fromCache(request) {
 // Update consists in opening the cache, performing a network request and
 // storing the new response data.
 function update(request) {
-    // console.log('update cache');
     return caches.open(CACHE).then(function (cache) {
         return fetch(request).then(function (response) {
             return cache.put(request, response.clone()).then(function () {
@@ -59,7 +62,7 @@ function refresh(response) {
             // [ETag](https://en.wikipedia.org/wiki/HTTP_ETag) the client can
             // check if the content has changed.
 
-            let message = {
+            var message = {
                 type: 'refresh',
                 url: response.url,
                 // Notice not all servers return the ETag header. If this is not

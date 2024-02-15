@@ -18,21 +18,15 @@ let dashboard = new Dashboard();
 // };
 //
 document.getElementById("ongletHistory").onclick = () => {
-    const data = [0, 4, 8, 20, 2, -5, 6, 3, 9, 10, 5, 15];
+    const data = [0, 4, 8, 20, 2, -5, 6, 3, 9, 10, 5, 15,12,13,-12];
     const graph = new Graph('lineChart');
     graph.drawGraph(data);
 };
 
 
-
-navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    for(let registration of registrations) {
-        registration.unregister();
-    }
-});
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-        .register('/src/serviceWorker.js')
+        .register('./serviceWorker.js')
         .then(() => { console.log('Service Worker Registered'); });
 }
 

@@ -5,7 +5,7 @@ export class Graph {
         this.canvas.width = window.innerWidth * 2 / 3 * 4 / 5;
         this.canvas.height = window.innerHeight * 2 / 3 * 4 / 5;
         this.canvasWidth = this.canvas.width - 10;
-        this.canvasHeight = this.canvas.height - 10;
+        this.canvasHeight = this.canvas.height -10;
         this.gridSize = this.canvasHeight / 6;
         this.gridColor = 'rgba(255,255,255,0.2)';
     }
@@ -29,22 +29,32 @@ export class Graph {
     }
 
     drawYAxisValues(data) {
+        const minValue = Math.min(...data);
+        const maxValue = Math.max(...data);
+
         this.ctx.fillStyle = 'white';
         this.ctx.font = '15px Arial';
         this.ctx.textAlign = 'left';
+
         for (let i = 0; i <= 5; i++) {
-            const value = Math.max(...data) * (i / 5);
+            const value = minValue + (maxValue - minValue) * (i / 5);
             const y = this.canvasHeight - this.gridSize * i;
             this.ctx.fillText(value.toFixed(0), 0, y + 5);
         }
     }
 
+
     calculateDataPoints(data) {
+        const minValue = Math.min(...data);
+        const maxValue = Math.max(...data);
         const gridWidth = this.canvasWidth / data.length;
-        const gridHeightunit = this.gridSize / (Math.max(...data) / 5);
+        const gridHeight = this.gridSize;
+        const gridHeightunit = this.gridSize / ((maxValue - minValue) / 5);
+
+        // const gridHeightunit = this.gridSize / (Math.max(...data) / 5);
         return data.map((value, index) => ({
             x: (index + 1) * gridWidth,
-            y: this.canvasHeight - gridHeightunit * value,
+            y: this.canvasHeight-(value - minValue) * gridHeightunit,
         }));
     }
 
