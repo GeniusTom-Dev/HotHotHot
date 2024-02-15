@@ -18,6 +18,7 @@ export class TemperatureObservable {
             this.socket.send("Je viens d'arriver");
 
             this.socket.onmessage = (event) => {
+                console.log(event.data);
                 this.analyzeData(event.data);
             }
         }

@@ -1,10 +1,13 @@
 import {Controller, Dashboard} from "./controllers/index.js";
 import {TemperatureObservable} from "./models/index.js";
 import {Graph} from "./view/index.js";
+import {DataAccess} from "./data/DataAcess.js";
 
 let controller = new Controller();
 let temperature = new TemperatureObservable();
+let dataAccess = new DataAccess()
 temperature.addObserver(controller);
+temperature.addObserver(dataAccess);
 
 let dashboard = new Dashboard();
 
