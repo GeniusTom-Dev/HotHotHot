@@ -5,6 +5,7 @@ export class TemperatureObservable {
         this.webSocketUrl = 'wss://ws.hothothot.dog:9502';
         this.initWebsocket();
         this.observers = [];
+        console.log("oui")
     }
 
     addObserver(controller) {
@@ -13,6 +14,8 @@ export class TemperatureObservable {
 
     initWebsocket() {
         this.socket = new WebSocket(this.webSocketUrl);
+
+        console.log(this.socket)
 
         this.socket.onopen = (event) => {
             this.socket.send("Je viens d'arriver");

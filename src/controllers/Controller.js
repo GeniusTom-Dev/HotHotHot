@@ -28,10 +28,10 @@ export class Controller {
     }
 
     showInTemperature() {
-        this.baliseInTemperature.innerHTML = `In temperature: ${this.inTemperature}`;
+        this.baliseInTemperature.innerHTML = `${this.inTemperature} °C`;
     }
 
     showOutTemperature() {
-        this.baliseOutTemperature.innerHTML = `Out temperature: ${this.outTemperature}`;
+        this.baliseOutTemperature.innerHTML = `${this.outTemperature} °C`;
     }
 }
