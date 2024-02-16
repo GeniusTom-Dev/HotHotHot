@@ -22,7 +22,7 @@ export class Dashboard {
 
         const data = [3,5,6,5,4];
         const graph = new Graph('lineChart');
-        graph.drawGraph(data);
+        graph.drawGraph();
     }
 
     initLocation() {

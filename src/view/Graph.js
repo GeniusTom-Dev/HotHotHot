@@ -34,7 +34,7 @@ export class Graph {
         this.ctx.textAlign = 'left';
 
         for (let i = 0; i <= 5; i++) {
-            const value = this.minValue + (this.maxValue - this.minValue) * (i / 5);
+            const value = this.gap * i + this.minValue;
             const y = this.canvasHeight - this.gridSize * i;
             this.ctx.fillText(value.toFixed(0), 0, y + 5);
         }
@@ -43,8 +43,20 @@ export class Graph {
     calculateDataPoints(data) {
         return data.map((value, index) => ({
             x: (index + 1) * this.gridWidth,
-            y: this.canvasHeight - this.gridHeightunit,
+            y: this.getY(value)
         }));
+    }
+
+    getY(value) {
+        if(value === this.minValue) {
+            return this.canvasHeight - ((value - this.minValue ) * this.gridHeightunit)
+        }
+        else if(value === this.maxValue) {
+            return this.canvasHeight - ((value - this.minValue ) * this.gridHeightunit)
+        }
+        else {
+            return this.canvasHeight - ((value - this.minValue ) * this.gridHeightunit)
+        }
     }
 
     drawCurve(dataPoints) {
@@ -69,12 +81,15 @@ export class Graph {
         }
     }
 
-    drawGraph(data) {
+    drawGraph() {
+        const data = [0, 4, 7,8,9,10,11,12,13,14,15, 20, 2, 6, -6, 9, 10, 5, 15,12,13,-13];
         this.minValue  = Math.min(...data) < 0 ? Math.min(...data) : 0;
         this.maxValue = Math.max(...data);
         this.gridWidth = this.canvasWidth / data.length;
-        this.gridHeight = this.gridSize;
-        this.gridHeightunit = this.gridSize / ((this.maxValue - this.minValue) / 5);
+        this.gap = this.minValue - (this.minValue + (this.maxValue - this.minValue) * (1 / 5)).toFixed(0);
+        this.gap = this.gap > 0 ? this.gap : this.gap*-1;
+        this.gridHeightunit = this.gridSize / this.gap ;
+        console.log(this.gap);
         this.drawGrid();
         this.drawYAxisValues();
         const dataPoints = this.calculateDataPoints(data);
