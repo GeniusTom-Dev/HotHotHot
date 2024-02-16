@@ -1,3 +1,5 @@
+// import {Graph} from "../view/Graph";
+
 export class Controller {
 
     constructor() {
@@ -9,6 +11,7 @@ export class Controller {
     }
 
     update(data) {
+        console.log(data);
         //{"HotHotHot":"Api v1.0","capteurs":
         // [{"type":"Thermique","Nom":"interieur","Valeur":"15.8","Timestamp":1707406883},
         // {"type":"Thermique","Nom":"exterieur","Valeur":"14.8","Timestamp":1707406883}]
@@ -25,6 +28,10 @@ export class Controller {
         }
         this.showInTemperature();
         this.showOutTemperature();
+
+        // const data = [0, 4, 8, 20, 2, -5, 6, 3, 9, 10, 5, 15,12,13,-12];
+        // const graph = new Graph('lineChart');
+        // graph.drawGraph(data);
     }
 
     showInTemperature() {

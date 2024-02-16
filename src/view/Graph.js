@@ -10,9 +10,8 @@ export class Graph {
         this.gridColor = 'rgba(255,255,255,0.2)';
     }
 
-    drawGrid(data) {
-        const gridWidth = this.canvasWidth / data.length;
-        for (let x = gridWidth; x <= this.canvasWidth; x += gridWidth) {
+    drawGrid() {
+        for (let x = this.gridWidth; x <= this.canvasWidth; x += this.gridWidth) {
             this.ctx.beginPath();
             this.ctx.moveTo(x, 0);
             this.ctx.lineTo(x, this.canvas.height);
@@ -28,33 +27,23 @@ export class Graph {
         }
     }
 
-    drawYAxisValues(data) {
-        const minValue = Math.min(...data);
-        const maxValue = Math.max(...data);
+    drawYAxisValues() {
 
         this.ctx.fillStyle = 'white';
         this.ctx.font = '15px Arial';
         this.ctx.textAlign = 'left';
 
         for (let i = 0; i <= 5; i++) {
-            const value = minValue + (maxValue - minValue) * (i / 5);
+            const value = this.minValue + (this.maxValue - this.minValue) * (i / 5);
             const y = this.canvasHeight - this.gridSize * i;
             this.ctx.fillText(value.toFixed(0), 0, y + 5);
         }
     }
 
-
     calculateDataPoints(data) {
-        const minValue = Math.min(...data);
-        const maxValue = Math.max(...data);
-        const gridWidth = this.canvasWidth / data.length;
-        const gridHeight = this.gridSize;
-        const gridHeightunit = this.gridSize / ((maxValue - minValue) / 5);
-
-        // const gridHeightunit = this.gridSize / (Math.max(...data) / 5);
         return data.map((value, index) => ({
-            x: (index + 1) * gridWidth,
-            y: this.canvasHeight-(value - minValue) * gridHeightunit,
+            x: (index + 1) * this.gridWidth,
+            y: this.canvasHeight - this.gridHeightunit,
         }));
     }
 
@@ -81,10 +70,20 @@ export class Graph {
     }
 
     drawGraph(data) {
-        this.drawGrid(data);
-        this.drawYAxisValues(data);
+        this.minValue  = Math.min(...data) < 0 ? Math.min(...data) : 0;
+        this.maxValue = Math.max(...data);
+        this.gridWidth = this.canvasWidth / data.length;
+        this.gridHeight = this.gridSize;
+        this.gridHeightunit = this.gridSize / ((this.maxValue - this.minValue) / 5);
+        this.drawGrid();
+        this.drawYAxisValues();
         const dataPoints = this.calculateDataPoints(data);
+        console.log(dataPoints);
         this.drawCurve(dataPoints);
         this.drawPoints(dataPoints);
+    }
+
+    clearGraph() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }

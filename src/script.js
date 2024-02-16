@@ -1,30 +1,20 @@
-import {Controller, Dashboard} from "./controllers/index.js";
-import {TemperatureObservable} from "./models/index.js";
-import {Graph} from "./view/index.js";
-import {DataAccess} from "./data/DataAcess.js";
+import {Controller} from "./controllers/Controller.js";
+import {Dashboard} from "./controllers/Dashboard.js";
+import {TemperatureObservable} from "./models/TemperatureObservable.js";
+import {Graph} from "./view/Graph.js";
+import {DataAccess} from "./data/DataAccess.js";
 
 let controller = new Controller();
+
 let temperature = new TemperatureObservable();
 let dataAccess = new DataAccess()
 temperature.addObserver(controller);
 temperature.addObserver(dataAccess);
 
 let dashboard = new Dashboard();
-
 // dashboard.getData().then(r => {
 //     console.log(r);
 // })
-
-// document.getElementById("dataButton").onclick = () => {
-//     document.getElementById('graph').style.display = 'none';
-//     document.getElementById('data').style.display = 'flex';
-// };
-//
-document.getElementById("ongletHistory").onclick = () => {
-    const data = [0, 4, 8, 20, 2, -5, 6, 3, 9, 10, 5, 15,12,13,-12];
-    const graph = new Graph('lineChart');
-    graph.drawGraph(data);
-};
 
 
 if ('serviceWorker' in navigator) {

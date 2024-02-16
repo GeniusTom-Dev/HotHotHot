@@ -1,18 +1,33 @@
 let CACHE = 'HotHotHot';
-self.addEventListener('install', e => {
-    e.waitUntil(
-        caches.open(CACHE).then(cache => {
-            cache.addAll([
-                "index.html",
-                "src/assets/",
-                "src/controllers/",
-                "src/models/",
-                "src/data/",
-                "src/view/",
+// On install, cache some resource.
+self.addEventListener('install', function(evt) {
+    evt.waitUntil(caches.open(CACHE).then(function (cache) {
+        let files = [
+            "index.html",
+            "manifest.webmanifest",
+            "src/assets/output.css",
+            "src/assets/images/docs.svg",
+            "src/assets/images/favicon.ico",
+            "src/assets/images/hothothot.jpg",
+            "src/assets/images/house.svg",
+            "src/assets/images/temp.svg",
+            "src/assets/images/thermometer.png",
+            "src/controllers/Controller.js",
+            "src/controllers/Dashboard.js",
+            "src/data/DataAccess.js",
+            "src/models/TemperatureObservable.js",
+            "src/view/Graph.js",
+            "src/script.js",
+        ];
 
-            ]).then(r => console.log(r + " : OK"));
-        })// à adapter à l'URL du projet
-    );
+        let promises = files.map(file => {
+            return cache.add(file).catch(error => {
+                console.error(`Failed to cache ${file}: ${error}`);
+            });
+        });
+
+        return Promise.all(promises);
+    }));
 });
 
 // On fetch, use cache but update the entry with the latest contents
@@ -34,7 +49,6 @@ self.addEventListener('fetch', function(evt) {
 // resource. Notice that in case of no matching, the promise still resolves
 // but it does with `undefined` as value.
 function fromCache(request) {
-
     return caches.open(CACHE).then(function (cache) {
         return cache.match(request);
     });
