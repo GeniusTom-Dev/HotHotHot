@@ -9,10 +9,10 @@ export class Graph {
 
     resizeCanvas() {
         console.log(this.canvas.parentElement.getBoundingClientRect().width);
-        this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().width * 9/10 : document.getElementById("dashboard").getBoundingClientRect().width *9 /10;
-        this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().height *8.9/10 : document.getElementById("dashboard").getBoundingClientRect().height *7/10;
+        this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().width * 9 / 10 : document.getElementById("dashboard").getBoundingClientRect().width * 9 / 10;
+        this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().height * 8.9 / 10 : document.getElementById("dashboard").getBoundingClientRect().height * 7 / 10;
         this.canvasWidth = this.canvas.width - 10;
-        this.canvasHeight = this.canvas.height -10;
+        this.canvasHeight = this.canvas.height - 10;
         this.gridSize = this.canvasHeight / 6;
         this.gridColor = 'rgba(255,255,255,0.2)';
     }
@@ -56,14 +56,12 @@ export class Graph {
     }
 
     getY(value) {
-        if(value === this.minValue) {
-            return this.canvasHeight - ((value - this.minValue ) * this.gridHeightunit)
-        }
-        else if(value === this.maxValue) {
-            return this.canvasHeight - ((value - this.minValue ) * this.gridHeightunit)
-        }
-        else {
-            return this.canvasHeight - ((value - this.minValue ) * this.gridHeightunit)
+        if (value === this.minValue) {
+            return this.canvasHeight - ((value - this.minValue) * this.gridHeightunit)
+        } else if (value === this.maxValue) {
+            return this.canvasHeight - ((value - this.minValue) * this.gridHeightunit)
+        } else {
+            return this.canvasHeight - ((value - this.minValue) * this.gridHeightunit)
         }
     }
 
@@ -93,12 +91,12 @@ export class Graph {
         this.resizeCanvas();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.data = data;
-        this.minValue  = Math.min(...data) < 0 ? Math.min(...data) : 0;
+        this.minValue = Math.min(...data) < 0 ? Math.min(...data) : 0;
         this.maxValue = Math.max(...data);
         this.gridWidth = this.canvasWidth / data.length;
         this.gap = this.minValue - (this.minValue + (this.maxValue - this.minValue) * (1 / 5)).toFixed(0);
-        this.gap = this.gap > 0 ? this.gap : this.gap*-1;
-        this.gridHeightunit = this.gridSize / this.gap ;
+        this.gap = this.gap > 0 ? this.gap : this.gap * -1;
+        this.gridHeightunit = this.gridSize / this.gap;
         this.drawGrid();
         this.drawYAxisValues();
         const dataPoints = this.calculateDataPoints(data);

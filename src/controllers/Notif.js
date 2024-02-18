@@ -35,30 +35,30 @@ export class Notif {
         for (let i = 0; i < data["capteurs"].length; i++) {
             switch (data["capteurs"][i]["Nom"]) {
                 case "interieur":
-                    if(data["capteurs"][i]["Valeur"] > 50){
+                    if (data["capteurs"][i]["Valeur"] > 50) {
                         this.notifications.push("alerte : Baissez le chauffage !")
                         this.sendNotification("alerte : Baissez le chauffage !").then(r => null)
                         addCounter++;
-                    }else if(data["capteurs"][i]["Valeur"] > 22){
+                    } else if (data["capteurs"][i]["Valeur"] > 22) {
                         this.notifications.push("alerte : Appelez les pompiers ou arrêtez votre barbecue !")
                         this.sendNotification("alerte : Appelez les pompiers ou arrêtez votre barbecue !").then(r => null)
                         addCounter++;
-                    }else if(data["capteurs"][i]["Valeur"] < 12){
+                    } else if (data["capteurs"][i]["Valeur"] < 12) {
                         this.notifications.push("alerte : montez le chauffage ou mettez un gros pull !")
                         this.sendNotification("alerte : montez le chauffage ou mettez un gros pull !").then(r => null)
                         addCounter++;
-                    }else if(data["capteurs"][i]["Valeur"] < 0){
+                    } else if (data["capteurs"][i]["Valeur"] < 0) {
                         this.notifications.push("alerte : canalisations gelées, appelez SOS plombier et mettez un bonnet !")
                         this.sendNotification("alerte : canalisations gelées, appelez SOS plombier et mettez un bonnet !").then(r => null)
                         addCounter++;
                     }
                     break;
                 case "exterieur":
-                    if(data["capteurs"][i]["Valeur"] > 35){
+                    if (data["capteurs"][i]["Valeur"] > 35) {
                         this.notifications.push("alerte : Hot Hot Hot !")
                         this.sendNotification("alerte : Hot Hot Hot !").then(r => null)
                         addCounter++;
-                    }else if(data["capteurs"][i]["Valeur"] < 0){
+                    } else if (data["capteurs"][i]["Valeur"] < 0) {
                         this.notifications.push("alerte : Banquise en vue !")
                         this.sendNotification("alerte : Banquise en vue !").then(r => null)
                         addCounter++;
@@ -67,7 +67,7 @@ export class Notif {
             }
         }
 
-        if(addCounter > 0){
+        if (addCounter > 0) {
             this.updateNotificationCount()
         }
 
@@ -99,7 +99,7 @@ export class Notif {
         for (let i = 0; i < this.notifications.length; i++) {
             message += this.notifications[i]
 
-            if(i < this.notifications.length - 1) {
+            if (i < this.notifications.length - 1) {
                 message += "<hr>"
             }
         }

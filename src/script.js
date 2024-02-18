@@ -2,8 +2,6 @@ import {Controller} from "./controllers/Controller.js";
 import {Dashboard} from "./controllers/Dashboard.js";
 import {TemperatureObservable} from "./models/TemperatureObservable.js";
 import {DataAccess} from "./models/DataAccess.js";
-import {DataApi} from "./models/DataApi.js";
-import {Notif} from "./controllers/Notif.js";
 
 let temperature = new TemperatureObservable();
 
@@ -26,7 +24,9 @@ let dashboard = new Dashboard();
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('./serviceWorker.js')
-        .then(() => { console.log('Service Worker Registered'); });
+        .then(() => {
+            console.log('Service Worker Registered');
+        });
 }
 
 let deferredPrompt;

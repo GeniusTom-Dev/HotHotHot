@@ -1,12 +1,13 @@
 let CACHE = 'HotHotHot';
 // On install, cache some resource.
-self.addEventListener('install', function(evt) {
+self.addEventListener('install', function (evt) {
     evt.waitUntil(caches.open(CACHE).then(function (cache) {
         let files = [
             "index.html",
             "manifest.webmanifest",
             "src/assets/output.css",
             "src/assets/images/docs.svg",
+            "src/assets/images/download.svg",
             "src/assets/images/favicon.ico",
             "src/assets/images/hothothot.jpg",
             "src/assets/images/house.svg",
@@ -31,7 +32,7 @@ self.addEventListener('install', function(evt) {
 
 // On fetch, use cache but update the entry with the latest contents
 // from the server.
-self.addEventListener('fetch', function(evt) {
+self.addEventListener('fetch', function (evt) {
     // You can use `respondWith()` to answer ASAP...
     evt.respondWith(fromCache(evt.request));
     // ...and `waitUntil()` to prevent the worker to be killed until

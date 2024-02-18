@@ -31,12 +31,12 @@ export class Controller {
         currentDate.setMilliseconds(0);
         let timestamps = [];
         for (let i = 0; i < 24; i++) {
-            for(let j = 0; j < 3; j+=1) {
+            for (let j = 0; j < 3; j += 1) {
                 const hourDate = new Date(currentDate);
                 hourDate.setHours(i);
-                hourDate.setMinutes(j*20);
+                hourDate.setMinutes(j * 20);
                 const timestamp = hourDate.getTime();
-                timestamps.push(timestamp/1000);
+                timestamps.push(timestamp / 1000);
             }
         }
         console.log(timestamps);
@@ -49,12 +49,12 @@ export class Controller {
         this.outdoorTemperatures = [];
 
         let promises = timestamps.slice(0, -1).map((timestamp, i) => {
-            return this.dataAccess.getFirstByTimestampRange(timestamp, timestamps[i+1],location).then(item => {
-                if(item !== null) {
+            return this.dataAccess.getFirstByTimestampRange(timestamp, timestamps[i + 1], location).then(item => {
+                if (item !== null) {
                     console.log(item);
-                    if(location === "interieur") {
+                    if (location === "interieur") {
                         this.indoorTemperatures.push(item["value"]);
-                    }else {
+                    } else {
                         this.outdoorTemperatures.push(item["value"]);
                     }
                 }

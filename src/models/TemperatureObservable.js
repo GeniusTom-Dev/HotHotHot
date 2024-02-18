@@ -36,13 +36,13 @@ export class TemperatureObservable {
         }
     }
 
-    initSystemTier(){
+    initSystemTier() {
         setInterval(() => {
-            if(this.lastWSSResult === null){
+            if (this.lastWSSResult === null) {
                 this.api.getTemperature().then(item => {
                     this.analyzeData(item)
                 })
-            }else{
+            } else {
                 this.lastWSSResult = null;
             }
         }, 1200000) // 20 minutes
