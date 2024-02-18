@@ -3,12 +3,24 @@ import {Graph} from "/src/view/Graph.js";
 export class Controller {
 
     constructor(dataAccess) {
-        this.inTemperature = 0;
-        this.outTemperature = 0;
+        this.inTemperature = null;
+        this.outTemperature = null;
         this.dataAccess = dataAccess;
 
         this.baliseInTemperature = document.getElementById("baliseInTemperature");
         this.baliseOutTemperature = document.getElementById("baliseOutTemperature");
+
+
+        this.getLastTemperature("interieur").then((value) => {
+            this.inTemperature = value.value;
+            this.showInTemperature()
+        })
+
+        this.getLastTemperature("exterieur").then((value) => {
+            this.outTemperature = value.value;
+            this.showOutTemperature()
+        })
+
 
 
         const indoorGraph = new Graph('indoorLineChart');
@@ -39,7 +51,6 @@ export class Controller {
                 timestamps.push(timestamp / 1000);
             }
         }
-        console.log(timestamps);
         return timestamps;
     }
 
@@ -51,7 +62,6 @@ export class Controller {
         let promises = timestamps.slice(0, -1).map((timestamp, i) => {
             return this.dataAccess.getFirstByTimestampRange(timestamp, timestamps[i + 1], location).then(item => {
                 if (item !== null) {
-                    console.log(item);
                     if (location === "interieur") {
                         this.indoorTemperatures.push(item["value"]);
                     } else {
@@ -63,8 +73,8 @@ export class Controller {
         await Promise.all(promises);
     }
 
-    showTemperature() {
-        console.log(this.temperatures);
+    async getLastTemperature(location) {
+        return await this.dataAccess.getLast(location);
     }
 
     update(data) {
@@ -84,10 +94,6 @@ export class Controller {
         }
         this.showInTemperature();
         this.showOutTemperature();
-
-        // const data = [0, 4, 8, 20, 2, -5, 6, 3, 9, 10, 5, 15,12,13,-12];
-        // const graph = new Graph('lineChart');
-        // graph.drawGraph(data);
     }
 
     showInTemperature() {
