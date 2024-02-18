@@ -8,7 +8,6 @@ export class Graph {
     }
 
     resizeCanvas() {
-        console.log(this.canvas.parentElement.getBoundingClientRect().width);
         this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().width * 9 / 10 : document.getElementById("dashboard").getBoundingClientRect().width * 9 / 10;
         this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().height * 8.9 / 10 : document.getElementById("dashboard").getBoundingClientRect().height * 7 / 10;
         this.canvasWidth = this.canvas.width - 10;

@@ -54,25 +54,25 @@
             <div
                     class="w-full h-full flex justify-around items-center xl:flex-wrap flex-col xl:flex-row mt-8 space-y-8 xl:mt-0 xl:space-y-0">
                 <div class="w-4/5 h-2/5 glass flex justify-center items-center flex-col xl:space-y-12 p-4">
-                    <h3 class="text-6xl" id="showHour">00:00</h3>
-                    <h3 class="text-6xl" id="showDate">00/00/0000</h3>
+                    <h4 class="text-6xl" id="showHour">00:00</h4>
+                    <h4 class="text-6xl" id="showDate">00/00/0000</h4>
                 </div>
 
-                <div
-                        class="w-4/5 xl:w-2/5 h-1/5 glass flex xl:flex-col justify-around items-center">
-                    <h4 class="text-2xl mt-2 text-center">Température Interieure</h4>
-                    <div class="w-full h-full flex items-center justify-center">
-                        <h3 aria-live="polite" class="text-6xl" id="baliseInTemperature">17°C</h3>
-                        <img alt="thermometer" class="w-16 h-16" src="src/assets/images/thermometer.png">
+                <div class="w-4/5 xl:w-2/5 glass flex xl:flex-col justify-around items-center space-x-2 space-y-2 p-2">
+                    <h3 class="text-2xl mt-2 text-center">Température Interieure</h3>
+                    <h4 aria-live="polite" class="text-6xl" id="baliseInTemperature">17°C</h4>
+                    <div class="flex flex-row space-x-3">
+                        <h5 id="minIndoor">min :</h5>
+                        <h5 id="maxIndoor">max :</h5>
                     </div>
                 </div>
 
-                <div
-                        class="w-4/5 xl:w-2/5 h-1/5 glass flex xl:flex-col justify-around items-center">
-                    <h4 class="text-2xl mt-2 text-center">Température Extérieure</h4>
-                    <div class="w-full h-full flex items-center justify-center">
-                        <h3 aria-live="polite" class="text-6xl" id="baliseOutTemperature">17°C</h3>
-                        <img alt="thermometer" class="w-16 h-16" src="src/assets/images/thermometer.png">
+                <div class="w-4/5 xl:w-2/5 glass flex xl:flex-col justify-around items-center space-x-2 space-y-2 p-2">
+                    <h3 class="text-2xl mt-2 text-center">Température Extérieure</h3>
+                    <h4 aria-live="polite" class="text-6xl" id="baliseOutTemperature">17°C</h4>
+                    <div class="flex flex-row space-x-3">
+                        <h5 id="minOutdoor">min :</h5>
+                        <h5 id="maxOutdoor">max :</h5>
                     </div>
                 </div>
             </div>
@@ -89,19 +89,14 @@
             </div>
         </section>
 
-        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black text-white rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300"
+        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300"
              id="notificationBubble">
             <span class="text-xl" id="notificationCount">0</span>
-            <div class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg"
-                 id="notificationMessages">
-                Zebi fé chooooo
-                <hr>
-                Zebi fé froaaa
+            <div class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg" id="notificationMessages">
             </div>
         </div>
 
-        <div class="fixed bottom-8 left-8 flex items-center justify-center bg-white text-black text-white rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300"
-             id="add-button">
+        <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
             <img alt="download" class="w-2/5 h-2/5" src="src/assets/images/download.svg">
         </div>
 

@@ -1,8 +1,30 @@
 export class DataAccess {
 
-
     constructor() {
         this.db = null;
+    }
+
+    clearDataBase() {
+        const transaction = this.db.transaction(["temp"], "readwrite");
+        const objectStore = transaction.objectStore("temp");
+        const now = new Date();
+        const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()/1000;
+        const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime()/1000;
+        console.log(endOfDay);
+        const request = objectStore.openCursor();
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                if (cursor.value.timestamp < startOfDay || cursor.value.timestamp > endOfDay) {
+                    console.log("Deleting item: ", cursor.value);
+                    cursor.delete();
+                }
+                cursor.continue();
+            }
+        };
+        request.onerror = (event) => {
+            console.error(`Error deleting items: ${event.target.error}`);
+        };
     }
 
     initDb() {
@@ -32,11 +54,12 @@ export class DataAccess {
             objectStore.createIndex("origin", "origin", {unique: false});
             objectStore.createIndex("value", "value", {unique: false});
             objectStore.createIndex("timestamp", "timestamp", {unique: false});
-
+            console.log("Store created");
         }
     }
 
     update(data) {
+
         //{"HotHotHot":"Api v1.0","capteurs":
         // [{"type":"Thermique","Nom":"interieur","Valeur":"15.8","Timestamp":1707406883},
         // {"type":"Thermique","Nom":"exterieur","Valeur":"14.8","Timestamp":1707406883}]

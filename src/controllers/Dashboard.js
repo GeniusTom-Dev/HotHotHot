@@ -1,11 +1,5 @@
 export class Dashboard {
     constructor() {
-        this.apiKey = "32cacda9dbbc4fac9f3175518241302";
-        // this.initLocation().then(location => {
-        //     this.location = location;
-        //     this.callLink = "http://api.weatherapi.com/v1/current.json?key=" + this.apiKey + "&q=" + this.location;
-        //     this.getData();
-        // });
 
         this.dashboard = document.getElementById('dashboard');
         this.history = document.getElementById('history');
@@ -21,7 +15,7 @@ export class Dashboard {
 
         setInterval(() => {
             this.updateDateHour();
-        }, 1000);
+        }, 500);
 
         this.initActions();
 

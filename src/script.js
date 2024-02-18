@@ -15,6 +15,7 @@ initializeDataAccess().then(dataAccess => {
     let controller = new Controller(dataAccess);
     temperature.addObserver(dataAccess);
     temperature.addObserver(controller);
+    dataAccess.clearDataBase();
 }).catch(error => {
     console.error("Error initializing DataAccess:", error);
 });
@@ -39,7 +40,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     // Stash the event so it can be triggered later.
     deferredPrompt = e;
     // Update UI to notify the user they can add to home screen
-    addBtn.style.display = 'block';
+    addBtn.style.display = 'flex';
 
     addBtn.addEventListener('click', (e) => {
         // Show the prompt

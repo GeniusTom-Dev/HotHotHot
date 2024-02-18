@@ -10,61 +10,25 @@ export class Controller {
         this.baliseInTemperature = document.getElementById("baliseInTemperature");
         this.baliseOutTemperature = document.getElementById("baliseOutTemperature");
 
+        this.minOutdoor = document.getElementById("minOutdoor");
+        this.maxOutdoor = document.getElementById("maxOutdoor");
+        this.minIndoor = document.getElementById("minIndoor");
+        this.maxIndoor = document.getElementById("maxIndoor");
 
-        const indoorGraph = new Graph('indoorLineChart');
+        this.indoorGraph = new Graph('indoorLineChart');
         this.getTemperatures("interieur").then(() => {
-            indoorGraph.drawGraph(this.indoorTemperatures);
+            this.indoorGraph.drawGraph(this.indoorTemperatures);
+            this.minIndoor.innerHTML = "min : "+Math.min(this.indoorTemperatures).toFixed(1) + " °C";
+            this.maxIndoor.innerHTML = "max : "+Math.max(this.indoorTemperatures).toFixed(1) + " °C";
         });
 
-        const outdoorGraph = new Graph('outdoorLineChart');
+        this.outdoorGraph = new Graph('outdoorLineChart');
         this.getTemperatures("exterieur").then(() => {
-            outdoorGraph.drawGraph(this.outdoorTemperatures);
+            this.outdoorGraph.drawGraph(this.outdoorTemperatures);
+            this.minOutdoor.innerHTML = "min : "+Math.min(this.outdoorTemperatures).toFixed(1) + " °C";
+            this.maxOutdoor.innerHTML = "max : "+Math.max(this.outdoorTemperatures).toFixed(1) + " °C";
         });
 
-
-    }
-
-    getTimeStamps() {
-        const currentDate = new Date();
-        currentDate.setMinutes(0);
-        currentDate.setSeconds(0);
-        currentDate.setMilliseconds(0);
-        let timestamps = [];
-        for (let i = 0; i < 24; i++) {
-            for (let j = 0; j < 3; j += 1) {
-                const hourDate = new Date(currentDate);
-                hourDate.setHours(i);
-                hourDate.setMinutes(j * 20);
-                const timestamp = hourDate.getTime();
-                timestamps.push(timestamp / 1000);
-            }
-        }
-        console.log(timestamps);
-        return timestamps;
-    }
-
-    async getTemperatures(location) {
-        let timestamps = this.getTimeStamps();
-        this.indoorTemperatures = [];
-        this.outdoorTemperatures = [];
-
-        let promises = timestamps.slice(0, -1).map((timestamp, i) => {
-            return this.dataAccess.getFirstByTimestampRange(timestamp, timestamps[i + 1], location).then(item => {
-                if (item !== null) {
-                    console.log(item);
-                    if (location === "interieur") {
-                        this.indoorTemperatures.push(item["value"]);
-                    } else {
-                        this.outdoorTemperatures.push(item["value"]);
-                    }
-                }
-            });
-        });
-        await Promise.all(promises);
-    }
-
-    showTemperature() {
-        console.log(this.temperatures);
     }
 
     update(data) {
@@ -85,10 +49,57 @@ export class Controller {
         this.showInTemperature();
         this.showOutTemperature();
 
-        // const data = [0, 4, 8, 20, 2, -5, 6, 3, 9, 10, 5, 15,12,13,-12];
-        // const graph = new Graph('lineChart');
-        // graph.drawGraph(data);
+        this.getTemperatures("exterieur").then(() => {
+            this.outdoorGraph.drawGraph(this.outdoorTemperatures);
+            this.minOutdoor.innerHTML = "min : "+Math.min(this.outdoorTemperatures).toFixed(1) + " °C";
+            this.maxOutdoor.innerHTML = "max : "+Math.max(this.outdoorTemperatures).toFixed(1) + " °C";
+        });
+        this.getTemperatures("interieur").then(() => {
+            this.indoorGraph.drawGraph(this.indoorTemperatures);
+            this.minIndoor.innerHTML = "min : "+Math.min(this.indoorTemperatures).toFixed(1) + " °C";
+            this.maxIndoor.innerHTML = "max : "+Math.max(this.indoorTemperatures).toFixed(1) + " °C";
+        });
+
     }
+
+    getTimeStamps() {
+        const currentDate = new Date();
+        currentDate.setMinutes(0);
+        currentDate.setSeconds(0);
+        currentDate.setMilliseconds(0);
+        let timestamps = [];
+        for (let i = 0; i < 24; i++) {
+            for (let j = 0; j < 3; j += 1) {
+                const hourDate = new Date(currentDate);
+                hourDate.setHours(i);
+                hourDate.setMinutes(j * 20);
+                const timestamp = hourDate.getTime();
+                timestamps.push(timestamp / 1000);
+            }
+        }
+        return timestamps;
+    }
+
+    async getTemperatures(location) {
+        let timestamps = this.getTimeStamps();
+        this.indoorTemperatures = [];
+        this.outdoorTemperatures = [];
+
+        let promises = timestamps.slice(0, -1).map((timestamp, i) => {
+            return this.dataAccess.getFirstByTimestampRange(timestamp, timestamps[i + 1], location).then(item => {
+                if (item !== null) {
+                    if (location === "interieur") {
+                        this.indoorTemperatures.push(item["value"]);
+                    } else {
+                        this.outdoorTemperatures.push(item["value"]);
+                    }
+                }
+            });
+        });
+        await Promise.all(promises);
+    }
+
+
 
     showInTemperature() {
         this.baliseInTemperature.innerHTML = `${this.inTemperature} °C`;
