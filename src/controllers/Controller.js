@@ -16,13 +16,19 @@ export class Controller {
         this.maxIndoor = document.getElementById("maxIndoor");
 
         this.getLastTemperature("interieur").then((value) => {
-            this.inTemperature = value.value;
-            this.showInTemperature()
+            if(value){
+                this.inTemperature = value.value;
+                this.showInTemperature()
+            }
+        }).catch((error) => {
+            console.log(error);
         })
 
         this.getLastTemperature("exterieur").then((value) => {
-            this.outTemperature = value.value;
-            this.showOutTemperature()
+            if(value){
+                this.outTemperature = value.value;
+                this.showOutTemperature()
+            }
         })
 
         this.indoorGraph = new Graph('indoorLineChart');
@@ -70,16 +76,24 @@ export class Controller {
 
     updateMinMax() {
         this.dataAccess.getMaxTemperature("exterieur").then((value) => {
-            this.maxOutdoor.innerHTML = "max : " + value.value + " °C";
+            if(value){
+                this.maxOutdoor.innerHTML = "max : " + value.value + " °C";
+            }
         });
         this.dataAccess.getMinTemperature("exterieur").then((value) => {
-            this.minOutdoor.innerHTML = "min : " + value.value + " °C";
+            if(value){
+                this.minOutdoor.innerHTML = "min : " + value.value + " °C";
+            }
         });
         this.dataAccess.getMaxTemperature("interieur").then((value) => {
-            this.maxIndoor.innerHTML = "max : " + value.value + " °C";
+            if(value){
+                this.maxIndoor.innerHTML = "max : " + value.value + " °C";
+            }
         });
         this.dataAccess.getMinTemperature("interieur").then((value) => {
-            this.minIndoor.innerHTML = "min : " + value.value + " °C";
+            if(value){
+                this.minIndoor.innerHTML = "min : " + value.value + " °C";
+            }
         });
     }
 

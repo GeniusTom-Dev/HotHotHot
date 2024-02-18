@@ -24,6 +24,19 @@ if ('serviceWorker' in navigator) {
         });
 }
 
+
+
+let buttonHomePage = document.getElementById('buttonHomePage');
+let buttonDocs = document.getElementById('buttonDocs');
+
+buttonHomePage.onclick = () => {
+    window.location.href = "/";
+};
+
+buttonDocs.onclick = () => {
+    window.location.href = "src/view/docs.html";
+};
+
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
 addBtn.style.display = 'none';

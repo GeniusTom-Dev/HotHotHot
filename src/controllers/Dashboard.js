@@ -40,11 +40,11 @@ export class Dashboard {
         };
 
         this.buttonHomePage.onclick = () => {
-            window.location.href = "index.html";
+            window.location.href = "/";
         };
 
         this.buttonDocs.onclick = () => {
-            window.location.href = "docs.html";
+            window.location.href = "src/view/docs.html";
         };
     }
 

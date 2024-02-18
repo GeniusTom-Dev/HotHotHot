@@ -35,6 +35,10 @@ export class TemperatureObservable {
     }
 
     initSystemTier() {
+        this.api.getTemperature().then(item => {
+            this.analyzeData(item)
+        })
+
         setInterval(() => {
             if (this.lastWSSResult === null) {
                 this.api.getTemperature().then(item => {
@@ -43,12 +47,16 @@ export class TemperatureObservable {
             } else {
                 this.lastWSSResult = null;
             }
-        }, 1200000) // 20 minutes
+        }, 5000) // 5 minutes
     }
 
     analyzeData(data) {
         for (let i = 0; i < this.observers.length; i++) {
-            this.observers[i].update(JSON.parse(data));
+            if(typeof data !== 'object'){
+                this.observers[i].update(JSON.parse(data));
+            }else{
+                this.observers[i].update(data);
+            }
         }
     }
 }
