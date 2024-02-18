@@ -2,9 +2,18 @@
 
 export class Controller {
 
-    constructor() {
+    constructor(dataAccess) {
         this.inTemperature = 0;
         this.outTemperature = 0;
+        this.dataAccess = dataAccess;
+
+
+        this.dataAccess.getAllItems().then(items => {
+            console.log("All items:", items);
+        }).catch(error => {
+            console.error("Error getting all items:", error);
+        })
+
 
         this.baliseInTemperature = document.getElementById("baliseInTemperature");
         this.baliseOutTemperature = document.getElementById("baliseOutTemperature");

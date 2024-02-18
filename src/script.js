@@ -5,13 +5,21 @@ import {Graph} from "./view/Graph.js";
 import {DataAccess} from "./models/DataAccess.js";
 import {DataApi} from "./models/DataApi.js";
 
-//let dataApi = new DataApi();
+async function initializeDataAccess() {
+    let dataAccess = new DataAccess();
+    await dataAccess.initDb(); // Attend que la base de données soit initialisée
+    return dataAccess;
+}
 
-let controller = new Controller();
+initializeDataAccess().then(dataAccess => {
+    let controller = new Controller(dataAccess);
+}).catch(error => {
+    console.error("Error initializing DataAccess:", error);
+});
 
-let temperature = new TemperatureObservable();
-let dataAccess = new DataAccess()
-temperature.addObserver(controller);
+
+//let temperature = new TemperatureObservable();
+//temperature.addObserver(controller);
 //temperature.addObserver(dataAccess);
 
 

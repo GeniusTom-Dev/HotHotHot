@@ -1,11 +1,15 @@
+import {DataApi} from "./DataApi.js";
+
 export class TemperatureObservable {
 
 
     constructor() {
         this.webSocketUrl = 'wss://ws.hothothot.dog:9502';
         this.initWebsocket();
+        this.api = new DataApi();
+        this.initSystemTier()
         this.observers = [];
-        console.log("oui")
+        this.lastWSSResult = null;
     }
 
     addObserver(controller) {
@@ -22,10 +26,22 @@ export class TemperatureObservable {
             this.socket.send("Je viens d'arriver");
 
             this.socket.onmessage = (event) => {
-                console.log(event.data);
+                this.lastWSSResult === null ? this.lastWSSResult = event.data : false
                 this.analyzeData(event.data);
             }
         }
+    }
+
+    initSystemTier(){
+        setInterval(() => {
+            if(this.lastWSSResult === null){
+                this.api.getTemperature().then(item => {
+                    this.analyzeData(item)
+                })
+            }else{
+                this.lastWSSResult = null;
+            }
+        }, 1200000) // 20 minutes
     }
 
     analyzeData(data) {
