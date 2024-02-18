@@ -91,17 +91,47 @@ export class DataAccess {
         }
     }
 
-    getAllItems() {
+    getMinTemperature(location) {
         if (this.db) {
             const transaction = this.db.transaction(["temp"], "readonly");
             const objectStore = transaction.objectStore("temp");
-            const request = objectStore.getAll();
+            const index = objectStore.index("origin");
+            const request = index.openCursor(IDBKeyRange.only(location), "prev");
 
             return new Promise((resolve, reject) => {
                 request.onsuccess = (event) => {
-                    resolve(event.target.result);
-                };
+                    const cursor = event.target.result;
 
+                    if (cursor) {
+                        resolve(cursor.value);
+                    } else {
+                        resolve(null);
+                    }
+                };
+                request.onerror = (event) => {
+                    reject(event.target.error);
+                };
+            });
+        }
+    }
+
+    getMaxTemperature(location) {
+        if (this.db) {
+            const transaction = this.db.transaction(["temp"], "readonly");
+            const objectStore = transaction.objectStore("temp");
+            const index = objectStore.index("origin");
+            const request = index.openCursor(IDBKeyRange.only(location), "next");
+
+            return new Promise((resolve, reject) => {
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+
+                    if (cursor) {
+                        resolve(cursor.value);
+                    } else {
+                        resolve(null);
+                    }
+                };
                 request.onerror = (event) => {
                     reject(event.target.error);
                 };
@@ -163,7 +193,6 @@ export class DataAccess {
                         resolve(null);
                     }
                 };
-
                 request.onerror = (event) => {
                     reject(event.target.error);
                 };

@@ -28,16 +28,14 @@ export class Controller {
         this.indoorGraph = new Graph('indoorLineChart');
         this.getTemperatures("interieur").then(() => {
             this.indoorGraph.drawGraph(this.indoorTemperatures);
-            this.minIndoor.innerHTML = "min : "+Math.min(this.indoorTemperatures).toFixed(1) + " °C";
-            this.maxIndoor.innerHTML = "max : "+Math.max(this.indoorTemperatures).toFixed(1) + " °C";
         });
 
         this.outdoorGraph = new Graph('outdoorLineChart');
         this.getTemperatures("exterieur").then(() => {
             this.outdoorGraph.drawGraph(this.outdoorTemperatures);
-            this.minOutdoor.innerHTML = "min : "+Math.min(this.outdoorTemperatures).toFixed(1) + " °C";
-            this.maxOutdoor.innerHTML = "max : "+Math.max(this.outdoorTemperatures).toFixed(1) + " °C";
         });
+
+        this.updateMinMax();
 
     }
 
@@ -61,15 +59,28 @@ export class Controller {
 
         this.getTemperatures("exterieur").then(() => {
             this.outdoorGraph.drawGraph(this.outdoorTemperatures);
-            this.minOutdoor.innerHTML = "min : "+Math.min(this.outdoorTemperatures).toFixed(1) + " °C";
-            this.maxOutdoor.innerHTML = "max : "+Math.max(this.outdoorTemperatures).toFixed(1) + " °C";
         });
         this.getTemperatures("interieur").then(() => {
             this.indoorGraph.drawGraph(this.indoorTemperatures);
-            this.minIndoor.innerHTML = "min : "+Math.min(this.indoorTemperatures).toFixed(1) + " °C";
-            this.maxIndoor.innerHTML = "max : "+Math.max(this.indoorTemperatures).toFixed(1) + " °C";
         });
 
+        this.updateMinMax();
+
+    }
+
+    updateMinMax() {
+        this.dataAccess.getMaxTemperature("exterieur").then((value) => {
+            this.maxOutdoor.innerHTML = "max : "+value.value + " °C";
+        });
+        this.dataAccess.getMinTemperature("exterieur").then((value) => {
+            this.minOutdoor.innerHTML = "min : "+value.value + " °C";
+        });
+        this.dataAccess.getMaxTemperature("interieur").then((value) => {
+            this.maxIndoor.innerHTML = "max : "+value.value + " °C";
+        });
+        this.dataAccess.getMinTemperature("interieur").then((value) => {
+            this.minIndoor.innerHTML = "min : "+value.value + " °C";
+        });
     }
 
     getTimeStamps() {
