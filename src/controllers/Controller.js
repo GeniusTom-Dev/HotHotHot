@@ -3,8 +3,8 @@ import {Graph} from "/src/view/Graph.js";
 export class Controller {
 
     constructor(dataAccess) {
-        this.inTemperature = 0;
-        this.outTemperature = 0;
+        this.inTemperature = null;
+        this.outTemperature = null;
         this.dataAccess = dataAccess;
 
         this.baliseInTemperature = document.getElementById("baliseInTemperature");
@@ -14,6 +14,16 @@ export class Controller {
         this.maxOutdoor = document.getElementById("maxOutdoor");
         this.minIndoor = document.getElementById("minIndoor");
         this.maxIndoor = document.getElementById("maxIndoor");
+
+        this.getLastTemperature("interieur").then((value) => {
+            this.inTemperature = value.value;
+            this.showInTemperature()
+        })
+
+        this.getLastTemperature("exterieur").then((value) => {
+            this.outTemperature = value.value;
+            this.showOutTemperature()
+        })
 
         this.indoorGraph = new Graph('indoorLineChart');
         this.getTemperatures("interieur").then(() => {
@@ -99,6 +109,9 @@ export class Controller {
         await Promise.all(promises);
     }
 
+    async getLastTemperature(location) {
+        return await this.dataAccess.getLast(location);
+    }
 
 
     showInTemperature() {

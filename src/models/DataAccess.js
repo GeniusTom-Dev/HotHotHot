@@ -146,5 +146,30 @@ export class DataAccess {
         }
     }
 
+    getLast(location) {
+        if (this.db) {
+            const transaction = this.db.transaction(["temp"], "readonly");
+            const objectStore = transaction.objectStore("temp");
+            const index = objectStore.index("origin");
+            const request = index.openCursor(IDBKeyRange.only(location), "prev");
+
+            return new Promise((resolve, reject) => {
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+
+                    if (cursor) {
+                        resolve(cursor.value);
+                    } else {
+                        resolve(null);
+                    }
+                };
+
+                request.onerror = (event) => {
+                    reject(event.target.error);
+                };
+            });
+        }
+    }
+
 
 }
