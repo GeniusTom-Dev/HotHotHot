@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Dashboard HotHotHot offre un suivi en temps réel des températures intérieures et extérieures, avec historique et notifications pour une gestion optimale du climat.">
+    <meta name="keywords" content="HotHotHot, dashboard, température intérieure, température extérieure, historique température, notifications climat">
+    <meta name="author" content="Even Tom, Possenti Alexandre">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation</title>
     <link href="/manifest.webmanifest" rel="manifest">
     <link href="/src/assets/output.css" rel="stylesheet">
@@ -13,30 +17,30 @@
 
 <div class="xl:glass w-11/12 xl:h-5/6 flex flex-col xl:flex-row">
     <!-- Navigation -->
-    <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block">
+    <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block" aria-label="Main Navigation">
         <!-- Logo and Branding -->
-        <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center">
+        <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center" aria-label="HotHotHot Brand">
             <img alt="logo" class="w-12 h-12 rounded-full" src="../assets/images/hothothot.jpg">
-            <h1 aria-label="HotHotHot" class="text-lg md:text-xl lg:text-2xl">HotHotHot</h1>
+            <h1 class="text-lg md:text-xl lg:text-2xl">HotHotHot</h1>
         </div>
 
         <!-- Navigation Links -->
         <ul class="flex xl:flex-col items-center xl:justify-center xl:space-y-4 xl:mt-4 ml-4 xl:ml-0 w-full xl:w-auto" role="navigation">
-            <li class="navbar selected" id="buttonHomePage">
+            <li class="navbar selected" id="buttonHomePage" tabindex="0" role="link" aria-label="Home">
                 <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/house.svg">
-                <p aria-label="Home" class="ml-4">Accueil</p>
+                <p class="ml-4">Accueil</p>
             </li>
-            <li class="navbar" id="buttonDocs">
-                <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
-                <p aria-label="Docs" class="ml-4">Docs</p>
+            <li class="navbar" id="buttonDocs" tabindex="0" role="link" aria-label="Docs">
+                <img alt="docs icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
+                <p class="ml-4">Docs</p>
             </li>
-            <li class="navbar">
+            <li class="navbar" tabindex="0" role="link" aria-label="Account Information">
                 <img alt="user icon" class="w-8 h-8 ml-4" src="/src/assets/images/user.svg">
-                <p aria-label="Infos comptes" class="ml-4">Infos comptes</p>
+                <p class="ml-4">Infos comptes</p>
             </li>
-            <li class="navbar">
+            <li class="navbar" tabindex="0" role="link" aria-label="Sign out">
                 <img alt="logout icon" class="w-8 h-8 ml-4" src="/src/assets/images/logout.svg">
-                <p aria-label="Déconnexion" class="ml-4">Déconnexion</p>
+                <p class="ml-4">Déconnexion</p>
             </li>
         </ul>
     </nav>
@@ -45,11 +49,11 @@
     <div class="w-full xl:w-[85%] rounded-r-[20px]">
         <!-- Documentation Header -->
         <div class="w-full border-b-2 border-[var(--top-navbar-logo-background)] relative flex justify-center items-center">
-            <h2 aria-label="Documentation" class="flex items-center p-8 justify-center text-4xl xl:my-0">Documentation</h2>
+            <h2 class="flex items-center p-8 justify-center text-4xl xl:my-0">Documentation</h2>
         </div>
 
         <!-- Documentation Sections -->
-        <section class="w-full flex flex-wrap justify-center items-center p-5 pt-10 space-x-2 space-y-3" id="documentation">
+        <section class="w-full flex flex-wrap justify-center items-center p-5 pt-10 space-x-2 space-y-3" id="documentation" aria-labelledby="Documentation">
             <!-- Team Presentation -->
             <div class="w-80 min-h-[35vh] glass space-x-2 space-y-3 p-5 mt-3">
                 <h3 class="text-2xl">Présentation équipe</h3>
@@ -90,7 +94,7 @@
         </section>
 
         <!-- Notification Bubble -->
-        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" id="notificationBubble">
+        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" id="notificationBubble" role="button" aria-haspopup="true" aria-label="Notifications" aria-expanded="false">
             <span class="text-xl" id="notificationCount">0</span>
             <div class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg" id="notificationMessages">
                 <!-- Notification messages go here -->
@@ -98,7 +102,7 @@
         </div>
 
         <!-- Add Button -->
-        <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
+        <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" role="button" aria-label="Add new item">
             <img alt="download" class="w-2/5 h-2/5" src="../assets/images/download.svg">
         </div>
     </div>

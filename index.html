@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Dashboard HotHotHot offre un suivi en temps réel des températures intérieures et extérieures, avec historique et notifications pour une gestion optimale du climat.">
+    <meta name="keywords" content="HotHotHot, dashboard, température intérieure, température extérieure, historique température, notifications climat">
+    <meta name="author" content="Even Tom, Possenti Alexandre">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Example</title>
     <link href="/manifest.webmanifest" rel="manifest">
     <link href="/src/assets/output.css" rel="stylesheet">
@@ -13,28 +17,28 @@
 
 <div class="xl:glass w-11/12 xl:h-5/6 flex flex-col xl:flex-row">
     <!-- Navigation -->
-    <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block">
+    <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block" aria-label="Menu principal">
         <!-- Logo and Branding -->
-        <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center">
+        <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center" aria-label="Logo HotHotHot">
             <img alt="logo" class="w-12 h-12 rounded-full" src="src/assets/images/hothothot.jpg">
             <h1 class="text-lg md:text-xl lg:text-2xl">HotHotHot</h1>
         </div>
 
         <!-- Navigation Links -->
-        <ul class="flex xl:flex-col items-center xl:justify-center xl:space-y-4 xl:mt-4 ml-4 xl:ml-0 w-full xl:w-auto">
-            <li class="navbar selected" id="buttonHomePage">
+        <ul class="flex xl:flex-col items-center xl:justify-center xl:space-y-4 xl:mt-4 ml-4 xl:ml-0 w-full xl:w-auto" role="navigation">
+            <li class="navbar selected" id="buttonHomePage" role="button" tabindex="0" aria-label="Accueil">
                 <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/house.svg">
                 <p class="ml-4">Accueil</p>
             </li>
-            <li class="navbar" id="buttonDocs">
-                <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
+            <li class="navbar" id="buttonDocs" role="button" tabindex="0" aria-label="Documentation">
+                <img alt="docs icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
                 <p class="ml-4">Docs</p>
             </li>
-            <li class="navbar">
+            <li class="navbar" role="button" tabindex="0" aria-label="Informations compte">
                 <img alt="user icon" class="w-8 h-8 ml-4" src="/src/assets/images/user.svg">
                 <p class="ml-4">Infos comptes</p>
             </li>
-            <li class="navbar">
+            <li class="navbar" role="button" tabindex="0" aria-label="Déconnexion">
                 <img alt="logout icon" class="w-8 h-8 ml-4" src="/src/assets/images/logout.svg">
                 <p class="ml-4">Déconnexion</p>
             </li>
@@ -48,17 +52,17 @@
             <h2 class="flex items-center p-8 justify-center text-4xl xl:my-0">Dashboard</h2>
             <!-- Dashboard Tabs -->
             <ul class="flex flex-wrap text-sm font-medium text-center absolute bottom-0 left-4" role="tablist">
-                <li class="me-2" id="switchDashboardButton">
-                    <a class="inline-block p-4 text-white rounded-t-lg active" href="#" id="ongletDashboard" role="tab">Dashboard</a>
+                <li class="me-2" id="switchDashboardButton" role="presentation">
+                    <a class="inline-block p-4 text-white rounded-t-lg active" href="#" id="ongletDashboard" role="tab" aria-selected="true" aria-controls="dashboard">Dashboard</a>
                 </li>
-                <li class="me-2" id="switchHistoryButton">
-                    <a class="inline-block p-4 rounded-t-lg hover:bg-[var(--top-navbar-logo-background)]" href="#" id="ongletHistory" role="tab">Historique</a>
+                <li class="me-2" id="switchHistoryButton" role="presentation">
+                    <a class="inline-block p-4 rounded-t-lg hover:bg-[var(--top-navbar-logo-background)]" href="#" id="ongletHistory" role="tab" aria-controls="history">Historique</a>
                 </li>
             </ul>
         </div>
 
         <!-- Dashboard Sections -->
-        <section class="w-full h-5/6 flex flex-col xl:flex-row" id="dashboard" role="region">
+        <section class="w-full h-5/6 flex flex-col xl:flex-row" id="dashboard" role="region" aria-labelledby="ongletDashboard">
             <!-- First Section: Current Time and Date -->
             <div class="w-full h-full flex justify-around items-center xl:flex-wrap flex-col xl:flex-row mt-8 space-y-8 xl:mt-0 xl:space-y-0">
                 <div class="w-4/5 h-2/5 glass flex justify-center items-center flex-col xl:space-y-12 p-4">
@@ -89,26 +93,26 @@
         </section>
 
         <!-- History Section -->
-        <section class="w-full rounded-r-[20px] hidden flex-col justify-center space-y-5 items-center mt-8 xl:mt-0 p-2" id="history" role="region">
+        <section class="w-full rounded-r-[20px] hidden flex-col justify-center space-y-5 items-center mt-8 xl:mt-0 p-2" id="history" role="region" aria-labelledby="ongletHistory">
             <div class="border-2 border-blue-500 p-5 rounded-xl w-full">
-                <canvas id="indoorLineChart"></canvas>
+                <canvas id="indoorLineChart" aria-label="Graphique de la température intérieure"></canvas>
             </div>
             <div class="border-2 border-blue-500 p-5 rounded-xl w-full">
-                <canvas id="outdoorLineChart"></canvas>
+                <canvas id="outdoorLineChart" aria-label="Graphique de la température extérieure"></canvas>
             </div>
         </section>
 
         <!-- Notification Bubble -->
-        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" id="notificationBubble">
-            <span class="text-xl" id="notificationCount">3</span>
+        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" id="notificationBubble" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="text-xl text-black" id="notificationCount">0</span>
             <div class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg" id="notificationMessages">
                 <!-- Notification messages go here -->
             </div>
         </div>
 
         <!-- Add Button -->
-        <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
-            <img alt="download" class="w-2/5 h-2/5" src="src/assets/images/download.svg">
+        <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" role="button" tabindex="0" aria-label="Ajouter">
+            <img alt="Icône télécharger" class="w-2/5 h-2/5" src="src/assets/images/download.svg">
         </div>
     </div>
 </div>
