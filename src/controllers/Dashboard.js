@@ -13,6 +13,9 @@ export class Dashboard {
         this.showDate = document.getElementById('showDate');
         this.showHour = document.getElementById('showHour');
 
+        this.buttonHomePage = document.getElementById('buttonHomePage');
+        this.buttonDocs = document.getElementById('buttonDocs');
+
         setInterval(() => {
             this.updateDateHour();
         }, 500);
@@ -34,6 +37,14 @@ export class Dashboard {
             this.history.style.display = 'flex';
             this.ongletDashboard.classList.remove("active");
             this.ongletHistory.classList.add("active");
+        };
+
+        this.buttonHomePage.onclick = () => {
+            window.location.href = "index.html";
+        };
+
+        this.buttonDocs.onclick = () => {
+            window.location.href = "docs.html";
         };
     }
 
