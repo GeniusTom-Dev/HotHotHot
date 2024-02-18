@@ -2,13 +2,21 @@ export class Graph {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
-        this.canvas.width = window.innerWidth * 2 / 3 * 4 / 5;
-        this.canvas.height = window.innerHeight * 2 / 3 * 4 / 5;
+        window.addEventListener('resize', () => {
+            this.drawGraph(this.data);
+        });
+    }
+
+    resizeCanvas() {
+        console.log(this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 : window.innerWidth * 2/3 * 4 / 5);
+        this.canvas.width = this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().width * 4 / 5 : window.innerWidth * 2/3 * 4 / 5;
+        this.canvas.height = this.canvas.parentElement.getBoundingClientRect().height * 4 / 5 !== 0 ? this.canvas.parentElement.getBoundingClientRect().height * 4 / 5 : window.innerHeight * 4/5 * 4 / 5;
         this.canvasWidth = this.canvas.width - 10;
         this.canvasHeight = this.canvas.height -10;
         this.gridSize = this.canvasHeight / 6;
         this.gridColor = 'rgba(255,255,255,0.2)';
     }
+
 
     drawGrid() {
         for (let x = this.gridWidth; x <= this.canvasWidth; x += this.gridWidth) {
@@ -81,24 +89,21 @@ export class Graph {
         }
     }
 
-    drawGraph() {
-        const data = [0, 4, 7,8,9,10,11,12,13,14,15, 20, 2, 6, -6, 9, 10, 5, 15,12,13,-13];
+    drawGraph(data) {
+        this.resizeCanvas();
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.data = data;
         this.minValue  = Math.min(...data) < 0 ? Math.min(...data) : 0;
         this.maxValue = Math.max(...data);
         this.gridWidth = this.canvasWidth / data.length;
         this.gap = this.minValue - (this.minValue + (this.maxValue - this.minValue) * (1 / 5)).toFixed(0);
         this.gap = this.gap > 0 ? this.gap : this.gap*-1;
         this.gridHeightunit = this.gridSize / this.gap ;
-        console.log(this.gap);
         this.drawGrid();
         this.drawYAxisValues();
         const dataPoints = this.calculateDataPoints(data);
-        console.log(dataPoints);
         this.drawCurve(dataPoints);
         this.drawPoints(dataPoints);
     }
 
-    clearGraph() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
 }

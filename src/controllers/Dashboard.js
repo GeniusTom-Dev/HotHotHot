@@ -1,5 +1,3 @@
-import {Graph} from "/src/view/Graph.js";
-
 export class Dashboard {
     constructor() {
         this.apiKey = "32cacda9dbbc4fac9f3175518241302";
@@ -20,9 +18,6 @@ export class Dashboard {
 
         this.initActions();
 
-        const data = [3,5,6,5,4];
-        const graph = new Graph('lineChart');
-        graph.drawGraph();
     }
 
     initLocation() {

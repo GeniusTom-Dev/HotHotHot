@@ -1,5 +1,5 @@
 {
-    "start_url": "/index.html",
+    "start_url": "/",
     "name": "HotHotHotAPP",
     "short_name": "HotHotHot",
     "description": "Aplication pour visualiser les températures",

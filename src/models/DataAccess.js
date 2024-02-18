@@ -86,5 +86,23 @@ export class DataAccess {
             });
         }
     }
+    getFirstByTimestampRange(startTimestamp, endTimestamp) {
+        const transaction = this.db.transaction("temp", "readonly");
+        const objectStore = transaction.objectStore("temp");
+        const index = objectStore.index("timestamp");
+        const range = IDBKeyRange.bound(startTimestamp, endTimestamp);
+        const request = index.get(range);
+
+        return new Promise((resolve, reject) => {
+            request.onsuccess = (event) => {
+                resolve(request.result);
+            };
+
+            request.onerror = (event) => {
+                reject(request.error);
+            };
+        });
+
+    }
 
 }

@@ -25,7 +25,6 @@ self.addEventListener('install', function(evt) {
                 console.error(`Failed to cache ${file}: ${error}`);
             });
         });
-
         return Promise.all(promises);
     }));
 });
