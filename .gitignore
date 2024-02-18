@@ -16,7 +16,6 @@ pids
 
 # Répertoires de build
 /build
-/dist
 
 # Fichiers temporaires
 npm-debug.log

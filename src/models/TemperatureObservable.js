@@ -25,6 +25,10 @@ export class TemperatureObservable {
         this.socket.onopen = (event) => {
             this.socket.send("Je viens d'arriver");
 
+            //{"HotHotHot":"Api v1.0","capteurs":
+            // [{"type":"Thermique","Nom":"interieur","Valeur":"15.8","Timestamp":1707406883},
+            // {"type":"Thermique","Nom":"exterieur","Valeur":"14.8","Timestamp":1707406883}]
+            // }
             this.socket.onmessage = (event) => {
                 this.lastWSSResult === null ? this.lastWSSResult = event.data : false
                 this.analyzeData(event.data);

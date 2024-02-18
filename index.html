@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -55,8 +54,8 @@
             <div
                     class="w-full h-full flex justify-around items-center xl:flex-wrap flex-col xl:flex-row mt-8 space-y-8 xl:mt-0 xl:space-y-0">
                 <div class="w-4/5 h-2/5 glass flex justify-center items-center flex-col xl:space-y-12 p-4">
-                    <h3 class="text-6xl">19:06</h3>
-                    <h3 class="text-6xl">13/02/2024</h3>
+                    <h3 class="text-6xl" id="showHour">00:00</h3>
+                    <h3 class="text-6xl" id="showDate">00/00/0000</h3>
                 </div>
 
                 <div
@@ -89,11 +88,23 @@
                 <canvas id="outdoorLineChart" aria-label="Graphique extérieur"></canvas>
             </div>
         </section>
-    </div>
 
-    <button class="add-button fixed left-1/2 -translate-x-1/2 bottom-10">Ajouter</button>
+        <div id="notificationBubble" class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black text-white rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
+            <span id="notificationCount" class="text-xl">0</span>
+            <div id="notificationMessages" class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg">
+                Zebi fé chooooo<hr> Zebi fé froaaa
+            </div>
+        </div>
+
+        <div id="add-button" class="fixed bottom-8 left-8 flex items-center justify-center bg-white text-black text-white rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
+            <img src="src/assets/images/download.svg" alt="download" class="w-2/5 h-2/5">
+        </div>
+
+    </div>
 </div>
 
-</body>
 
+
+
+</body>
 </html>

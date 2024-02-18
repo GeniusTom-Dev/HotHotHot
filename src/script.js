@@ -3,6 +3,7 @@ import {Dashboard} from "./controllers/Dashboard.js";
 import {TemperatureObservable} from "./models/TemperatureObservable.js";
 import {DataAccess} from "./models/DataAccess.js";
 import {DataApi} from "./models/DataApi.js";
+import {Notif} from "./controllers/Notif.js";
 
 let temperature = new TemperatureObservable();
 
@@ -21,7 +22,6 @@ initializeDataAccess().then(dataAccess => {
 });
 
 let dashboard = new Dashboard();
-
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
