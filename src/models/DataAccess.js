@@ -8,8 +8,8 @@ export class DataAccess {
         const transaction = this.db.transaction(["temp"], "readwrite");
         const objectStore = transaction.objectStore("temp");
         const now = new Date();
-        const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()/1000;
-        const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime()/1000;
+        const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 1000;
+        const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime() / 1000;
         console.log(endOfDay);
         const request = objectStore.openCursor();
         request.onsuccess = (event) => {

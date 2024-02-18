@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard Example</title>
     <link href="/manifest.webmanifest" rel="manifest">
     <link href="/src/assets/output.css" rel="stylesheet">
     <link href="/src/assets/images/favicon.ico" rel="icon" type="image/vnd.icon">
-
     <script src="src/script.js" type="module"></script>
 </head>
 
 <body class="background h-[100vh] p-2 flex xl:items-center justify-center">
 
 <div class="xl:glass w-11/12 xl:h-5/6 flex flex-col xl:flex-row">
+    <!-- Navigation -->
     <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block">
+        <!-- Logo and Branding -->
         <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center">
             <img alt="logo" class="w-12 h-12 rounded-full" src="src/assets/images/hothothot.jpg">
             <h1 class="text-lg md:text-xl lg:text-2xl">HotHotHot</h1>
         </div>
 
+        <!-- Navigation Links -->
         <ul class="flex xl:flex-col items-center xl:justify-center xl:space-y-4 xl:mt-4 ml-4 xl:ml-0 w-full xl:w-auto">
             <li class="navbar selected">
                 <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/house.svg">
@@ -26,7 +28,7 @@
             </li>
             <li class="navbar">
                 <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
-                <a class="ml-4" href="/docs">Docs</a>
+                <a class="ml-4" href="docs.html">Docs</a>
             </li>
             <li class="navbar">
                 <img alt="user icon" class="w-8 h-8 ml-4" src="/src/assets/images/user.svg">
@@ -39,54 +41,55 @@
         </ul>
     </nav>
 
+    <!-- Dashboard Content -->
     <div class="w-full xl:w-[85%] rounded-r-[20px]">
-        <div
-                class="w-full border-b-2 border-[var(--top-navbar-logo-background)] relative flex justify-center items-center">
+        <!-- Dashboard Header -->
+        <div class="w-full border-b-2 border-[var(--top-navbar-logo-background)] relative flex justify-center items-center">
             <h2 class="flex items-center p-8 justify-center text-4xl xl:my-0">Dashboard</h2>
-
+            <!-- Dashboard Tabs -->
             <ul class="flex flex-wrap text-sm font-medium text-center absolute bottom-0 left-4" role="tablist">
                 <li class="me-2" id="switchDashboardButton">
-                    <a class="inline-block p-4 text-white rounded-t-lg active" href="#"
-                       id="ongletDashboard" role="tab">Dashboard</a>
+                    <a class="inline-block p-4 text-white rounded-t-lg active" href="#" id="ongletDashboard" role="tab">Dashboard</a>
                 </li>
                 <li class="me-2" id="switchHistoryButton">
-                    <a class="inline-block p-4 rounded-t-lg hover:bg-[var(--top-navbar-logo-background)]"
-                       href="#" id="ongletHistory" role="tab">Historique</a>
+                    <a class="inline-block p-4 rounded-t-lg hover:bg-[var(--top-navbar-logo-background)]" href="#" id="ongletHistory" role="tab">Historique</a>
                 </li>
             </ul>
         </div>
 
-        <section class="w-full h-5/6 flex flex-col xl:flex-row" id="dashboard"
-                 role="region">
-            <div
-                    class="w-full h-full flex justify-around items-center xl:flex-wrap flex-col xl:flex-row mt-8 space-y-8 xl:mt-0 xl:space-y-0">
+        <!-- Dashboard Sections -->
+        <section class="w-full h-5/6 flex flex-col xl:flex-row" id="dashboard" role="region">
+            <!-- First Section: Current Time and Date -->
+            <div class="w-full h-full flex justify-around items-center xl:flex-wrap flex-col xl:flex-row mt-8 space-y-8 xl:mt-0 xl:space-y-0">
                 <div class="w-4/5 h-2/5 glass flex justify-center items-center flex-col xl:space-y-12 p-4">
-                    <h4 class="text-6xl" id="showHour">00:00</h4>
-                    <h4 class="text-6xl" id="showDate">00/00/0000</h4>
+                    <h4 class="text-6xl" id="showHour"></h4>
+                    <h4 class="text-6xl" id="showDate"></h4>
                 </div>
 
+                <!-- Second Section: Indoor Temperature -->
                 <div class="w-4/5 xl:w-2/5 glass flex xl:flex-col justify-around items-center space-x-2 space-y-2 p-2">
-                    <h3 class="text-2xl mt-2 text-center">Température Interieure</h3>
-                    <h4 class="text-6xl" id="baliseInTemperature">Aucune donnée pour le moment</h4>
+                    <h3 class="text-2xl mt-2 text-center">Température Intérieure</h3>
+                    <h4 class="text-6xl" id="baliseInTemperature">Connexion...</h4>
                     <div class="flex flex-row space-x-3">
-                        <h5 id="minIndoor">min :</h5>
-                        <h5 id="maxIndoor">max :</h5>
+                        <h5 id="minIndoor">min : </h5>
+                        <h5 id="maxIndoor">max : </h5>
                     </div>
                 </div>
 
+                <!-- Third Section: Outdoor Temperature -->
                 <div class="w-4/5 xl:w-2/5 glass flex xl:flex-col justify-around items-center space-x-2 space-y-2 p-2">
                     <h3 class="text-2xl mt-2 text-center">Température Extérieure</h3>
-                    <h4 class="text-6xl" id="baliseOutTemperature">Aucune donnée pour le moment</h4>
+                    <h4 class="text-6xl" id="baliseOutTemperature">Connexion...</h4>
                     <div class="flex flex-row space-x-3">
-                        <h5 id="minOutdoor">min :</h5>
-                        <h5 id="maxOutdoor">max :</h5>
+                        <h5 id="minOutdoor">min : </h5>
+                        <h5 id="maxOutdoor">max : </h5>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section
-                                class="w-full rounded-r-[20px] hidden flex-col justify-center space-y-5 items-center mt-8 xl:mt-0 p-2" id="history" role="region">
+        <!-- History Section -->
+        <section class="w-full rounded-r-[20px] hidden flex-col justify-center space-y-5 items-center mt-8 xl:mt-0 p-2" id="history" role="region">
             <div class="border-2 border-blue-500 p-5 rounded-xl w-full">
                 <canvas id="indoorLineChart"></canvas>
             </div>
@@ -95,20 +98,20 @@
             </div>
         </section>
 
-        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300"
-             id="notificationBubble">
-            <span class="text-xl" id="notificationCount">0</span>
+        <!-- Notification Bubble -->
+        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300" id="notificationBubble">
+            <span class="text-xl" id="notificationCount">3</span>
             <div class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg" id="notificationMessages">
+                <!-- Notification messages go here -->
             </div>
         </div>
 
+        <!-- Add Button -->
         <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
             <img alt="download" class="w-2/5 h-2/5" src="src/assets/images/download.svg">
         </div>
-
     </div>
 </div>
-
 
 </body>
 </html>

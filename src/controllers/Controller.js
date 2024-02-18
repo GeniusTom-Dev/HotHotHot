@@ -70,16 +70,16 @@ export class Controller {
 
     updateMinMax() {
         this.dataAccess.getMaxTemperature("exterieur").then((value) => {
-            this.maxOutdoor.innerHTML = "max : "+value.value + " °C";
+            this.maxOutdoor.innerHTML = "max : " + value.value + " °C";
         });
         this.dataAccess.getMinTemperature("exterieur").then((value) => {
-            this.minOutdoor.innerHTML = "min : "+value.value + " °C";
+            this.minOutdoor.innerHTML = "min : " + value.value + " °C";
         });
         this.dataAccess.getMaxTemperature("interieur").then((value) => {
-            this.maxIndoor.innerHTML = "max : "+value.value + " °C";
+            this.maxIndoor.innerHTML = "max : " + value.value + " °C";
         });
         this.dataAccess.getMinTemperature("interieur").then((value) => {
-            this.minIndoor.innerHTML = "min : "+value.value + " °C";
+            this.minIndoor.innerHTML = "min : " + value.value + " °C";
         });
     }
 
