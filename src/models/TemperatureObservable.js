@@ -47,7 +47,7 @@ export class TemperatureObservable {
             } else {
                 this.lastWSSResult = null;
             }
-        }, 5000) // 5 minutes
+        }, 5 * 60000) // 5 minutes
     }
 
     analyzeData(data) {
