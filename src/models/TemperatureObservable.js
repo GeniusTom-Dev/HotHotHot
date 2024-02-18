@@ -12,6 +12,7 @@ export class TemperatureObservable {
         this.observers.push(controller);
     }
 
+
     initWebsocket() {
         this.socket = new WebSocket(this.webSocketUrl);
 
