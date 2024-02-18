@@ -34,7 +34,7 @@ buttonHomePage.onclick = () => {
 };
 
 buttonDocs.onclick = () => {
-    window.location.href = "src/view/docs.html";
+    window.location.href = "/src/view/docs.html";
 };
 
 let deferredPrompt;
