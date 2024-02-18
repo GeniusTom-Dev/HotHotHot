@@ -27,11 +27,9 @@ initializeDataAccess().then(dataAccess => {
     console.error("Error initializing DataAccess:", error);
 });
 
-//
-//let dashboard = new Dashboard();
-// dashboard.getData().then(r => {
-//     console.log(r);
-// })
+
+let dashboard = new Dashboard();
+
 
 
 if ('serviceWorker' in navigator) {

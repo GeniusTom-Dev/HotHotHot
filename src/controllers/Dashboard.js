@@ -18,6 +18,13 @@ export class Dashboard {
         this.ongletDashboard = document.getElementById('ongletDashboard');
         this.ongletHistory = document.getElementById('ongletHistory');
 
+        this.showDate = document.getElementById('showDate');
+        this.showHour = document.getElementById('showHour');
+
+        setInterval(() => {
+            this.updateDateHour();
+        }, 1000);
+
         this.initActions();
 
         const data = [3,5,6,5,4];
@@ -61,5 +68,11 @@ export class Dashboard {
             this.ongletDashboard.classList.remove("active");
             this.ongletHistory.classList.add("active");
         };
+    }
+
+    updateDateHour() {
+        let now = new Date();
+        this.showDate.innerHTML = now.toLocaleDateString('fr-FR');
+        this.showHour.innerHTML = now.toLocaleTimeString('fr-FR');
     }
 }
