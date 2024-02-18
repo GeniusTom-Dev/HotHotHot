@@ -3,8 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/manifest.webmanifest" rel="manifest">
+    <link href="/src/assets/output.css" rel="stylesheet">
+    <link href="/src/assets/images/favicon.ico" rel="icon" type="image/vnd.icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="src/script.js" type="module"></script>
 </head>
-<body>
-doccccccs
+
+<body class="background h-[100vh] p-2 flex xl:items-center justify-center">
+
+<div class="xl:glass w-11/12 xl:h-5/6 flex flex-col xl:flex-row">
+    <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block">
+        <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center">
+            <img alt="logo" class="w-12 h-12 rounded-full" src="src/assets/images/hothothot.jpg">
+            <h1 aria-label="HotHotHot" class="text-lg md:text-xl lg:text-2xl">HotHotHot</h1>
+        </div>
+
+        <ul class="flex xl:flex-col items-center xl:justify-center xl:space-y-4 xl:mt-4 ml-4 xl:ml-0 w-full xl:w-auto"
+            role="navigation">
+            <li class="navbar">
+                <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/house.svg">
+                <a aria-label="Home" class="ml-4 m-5" href="/">Home</a>
+            </li>
+            <li class="navbar selected">
+                <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
+                <a aria-label="Docs" class="ml-4" href="/docs">Docs</a>
+            </li>
+            <li class="navbar">
+                <img alt="user icon" class="w-8 h-8 ml-4" src="/src/assets/images/user.svg">
+                <a aria-label="Docs" class="ml-4" href="#">Infos comptes</a>
+            </li>
+            <li class="navbar">
+                <img alt="logout icon" class="w-8 h-8 ml-4" src="/src/assets/images/logout.svg">
+                <a aria-label="Docs" class="ml-4" href="#">Déconnexion</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="w-full xl:w-[85%] rounded-r-[20px]">
+        <div class="w-full border-b-2 border-[var(--top-navbar-logo-background)] relative flex justify-center items-center">
+            <h2 aria-label="Dashboard" class="flex items-center p-8 justify-center text-4xl xl:my-0">Documentation</h2>
+        </div>
+
+        <section class="w-full flex flex-wrap justify-center items-center p-5 pt-10 space-x-2 space-y-3" id="documentation">
+
+            <div class="w-80 min-h-[35vh] glass space-x-2 space-y-3 p-5 mt-3">
+                <h3 class="text-2xl">Présentation équipe</h3>
+                <p class="text-lg">
+                    Alexandre POSSENTI : mise en place de la PWA, gestions des graphiques et récuperation des données dans la BD
+                    <br>
+                    Tom EVEN : Creation de la BD et enregistrement des données par WebSocket et API, gestion des notifications, Design de l'application.
+                </p>
+            </div>
+            <div class="w-80 min-h-[35vh] glass space-x-2 space-y-3 p-5">
+                <h3 class="text-2xl">Outils Utilisés et Organisation</h3>
+                <p class="text-lg">
+                    Nous avons utiliser GitHub pour pouvoir travailler simultanément en mettant a jour avec le code de l'autre facilement.<br>
+                    Nous avons utilisé le framework TailwindCSS pour faire de design de l'application.
+                </p>
+            </div>
+            <div class="w-80 min-h-[35vh] glass space-x-2 space-y-3 p-5">
+                <h3 class="text-2xl">2 Difficultés rencontrées</h3>
+                <p class="text-lg">
+                    La première difficulté rencontrée a été la mise en place de la PWA, nous avons eu du mal a comprendre comment cela fonctionnait.<br>
+                    La deuxième difficulté a été la mise en place du certificat SSL pour avoir un site HTTPS.
+                </p>
+            </div>
+            <div class="w-80 min-h-[35vh] glass space-x-2 space-y-3 p-5">
+                <h3 class="text-2xl">Que changerions-nous ?</h3>
+                <p class="text-lg">
+                    Si on devait refaire le projet, nous aurions directement travaillé sur un hebergeur comme alwaysdata qui possede déjà une certification HTTPS au lieu de le faire en local<br>
+                </p>
+            </div>
+
+        </section>
+
+
+        <div class="fixed bottom-8 right-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300"
+             id="notificationBubble">
+            <span class="text-xl" id="notificationCount">0</span>
+            <div class="hidden absolute bottom-16 right-0 bg-white text-black p-4 rounded shadow-lg" id="notificationMessages">
+            </div>
+        </div>
+
+        <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
+            <img alt="download" class="w-2/5 h-2/5" src="src/assets/images/download.svg">
+        </div>
+
+    </div>
+</div>
+
+
 </body>
 </html>

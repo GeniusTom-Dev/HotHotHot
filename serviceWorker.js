@@ -21,6 +21,7 @@ self.addEventListener('install', function (evt) {
             "src/models/TemperatureObservable.js",
             "src/models/DataApi.js",
             "src/view/Graph.js",
+            "src/view/docs.html",
             "src/script.js",
         ];
 
