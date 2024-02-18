@@ -4,6 +4,7 @@ import {TemperatureObservable} from "./models/TemperatureObservable.js";
 import {Graph} from "./view/Graph.js";
 import {DataAccess} from "./models/DataAccess.js";
 import {DataApi} from "./models/DataApi.js";
+import {Notif} from "./controllers/Notif.js";
 
 async function initializeDataAccess() {
     let dataAccess = new DataAccess();
@@ -11,18 +12,20 @@ async function initializeDataAccess() {
     return dataAccess;
 }
 
+let temperature = new TemperatureObservable();
+const registration = await navigator.serviceWorker.getRegistration();
+let notif = new Notif(registration);
+
+temperature.addObserver(notif)
+
+
 initializeDataAccess().then(dataAccess => {
     let controller = new Controller(dataAccess);
+    temperature.addObserver(controller);
+    temperature.addObserver(dataAccess);
 }).catch(error => {
     console.error("Error initializing DataAccess:", error);
 });
-
-
-//let temperature = new TemperatureObservable();
-//temperature.addObserver(controller);
-//temperature.addObserver(dataAccess);
-
-
 
 //
 //let dashboard = new Dashboard();
@@ -63,3 +66,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
         });
     });
 });
+
+
+
