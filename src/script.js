@@ -2,16 +2,22 @@ import {Controller} from "./controllers/Controller.js";
 import {Dashboard} from "./controllers/Dashboard.js";
 import {TemperatureObservable} from "./models/TemperatureObservable.js";
 import {Graph} from "./view/Graph.js";
-import {DataAccess} from "./data/DataAccess.js";
+import {DataAccess} from "./models/DataAccess.js";
+import {DataApi} from "./models/DataApi.js";
+
+//let dataApi = new DataApi();
 
 let controller = new Controller();
 
 let temperature = new TemperatureObservable();
 let dataAccess = new DataAccess()
 temperature.addObserver(controller);
-temperature.addObserver(dataAccess);
+//temperature.addObserver(dataAccess);
 
-let dashboard = new Dashboard();
+
+
+
+//let dashboard = new Dashboard();
 // dashboard.getData().then(r => {
 //     console.log(r);
 // })
