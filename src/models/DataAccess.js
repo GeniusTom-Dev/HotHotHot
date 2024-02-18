@@ -2,35 +2,33 @@ export class DataAccess {
 
 
     constructor() {
-        this.initDb();
-        console.log("data loaded")
-
+        this.db = null;
     }
 
     initDb() {
-        const request = indexedDB.open("dbTemp", 3);
-        request.onerror = (event) => {
-            // console.log("error: " + event.target.errorCode);
-        };
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open("dbTemp", 3);
+            request.onerror = (event) => {
+                console.log("error: " + event.target.errorCode);
+                reject(event.target.error);
+            };
 
-        request.onupgradeneeded = (event) => {
-            this.db = event.target.result;
-            this.initStore();
-        };
+            request.onupgradeneeded = (event) => {
+                this.db = event.target.result;
+                console.log(event.target.result);
+                this.initStore();
+            };
 
-        request.onsuccess = (event) => {
-            this.db = event.target.result;
-
-            this.getAllItems().then(items => {
-                console.log("All items:", items.result);
-            }).catch(error => {
-                console.error("Error getting all items:", error);
-            });
-        };
+            request.onsuccess = (event) => {
+                this.db = event.target.result;
+                console.log(event.target.result);
+                resolve();
+            };
+        });
     }
 
     initStore() {
-        if (!this.db.objectStoreNames.contains('temp')) {
+        if (this.db && !this.db.objectStoreNames.contains('temp')) {
             const objectStore = this.db.createObjectStore("temp",{ autoIncrement: true });
             objectStore.createIndex("origin", "origin", {unique: false});
             objectStore.createIndex("value", "value", {unique: false});
@@ -56,20 +54,23 @@ export class DataAccess {
     }
 
     addItem(data) {
-        const request = this.db.transaction("temp", "readwrite")
-            .objectStore("temp")
-            .add(data);
+        if(this.db){
+            const request = this.db.transaction("temp", "readwrite")
+                .objectStore("temp")
+                .add(data);
 
-        request.onsuccess = ()=> {
-            console.log(`New student added, email: ${request.result}`);
-        }
+            request.onsuccess = ()=> {
+                console.log(`New student added, email: ${request.result}`);
+            }
 
-        request.onerror = (err)=> {
-            console.error(`Error to add new student: ${err}`)
+            request.onerror = (err)=> {
+                console.error(`Error to add new student: ${err}`)
+            }
         }
     }
 
     getAllItems(){
+        if(this.db) {
             const transaction = this.db.transaction(["temp"], "readonly");
             const objectStore = transaction.objectStore("temp");
             const request = objectStore.getAll();
@@ -83,6 +84,7 @@ export class DataAccess {
                     reject(event.target.error);
                 };
             });
+        }
     }
 
 }
