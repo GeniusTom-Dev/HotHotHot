@@ -1,9 +1,9 @@
 export class DataAccess {
 
+
     constructor() {
         this.initDb();
         console.log("data loaded")
-        this.getAllItems()
 
     }
 
@@ -20,10 +20,12 @@ export class DataAccess {
 
         request.onsuccess = (event) => {
             this.db = event.target.result;
-            console.log(event.target.result)
-            let alldata = this.getAllItems();
 
-            console.log(alldata)
+            this.getAllItems().then(items => {
+                console.log("All items:", items.result);
+            }).catch(error => {
+                console.error("Error getting all items:", error);
+            });
         };
     }
 
@@ -72,13 +74,15 @@ export class DataAccess {
             const objectStore = transaction.objectStore("temp");
             const request = objectStore.getAll();
 
-            request.onsuccess = (event) => {
-                return event.target.result;
-            };
+            return new Promise((resolve, reject) => {
+                request.onsuccess = (event) => {
+                    resolve(event.target.result);
+                };
 
-            request.onerror = (event) => {
-                return event.target.error;
-            };
+                request.onerror = (event) => {
+                    reject(event.target.error);
+                };
+            });
     }
 
 }
