@@ -1,9 +1,10 @@
 import {Controller} from "./controllers/Controller.js";
 import {Dashboard} from "./controllers/Dashboard.js";
 import {TemperatureObservable} from "./models/TemperatureObservable.js";
-import {Graph} from "./view/Graph.js";
 import {DataAccess} from "./models/DataAccess.js";
 import {DataApi} from "./models/DataApi.js";
+
+let temperature = new TemperatureObservable();
 
 async function initializeDataAccess() {
     let dataAccess = new DataAccess();
@@ -13,22 +14,13 @@ async function initializeDataAccess() {
 
 initializeDataAccess().then(dataAccess => {
     let controller = new Controller(dataAccess);
+    temperature.addObserver(dataAccess);
+    temperature.addObserver(controller);
 }).catch(error => {
     console.error("Error initializing DataAccess:", error);
 });
 
-
-//let temperature = new TemperatureObservable();
-//temperature.addObserver(controller);
-//temperature.addObserver(dataAccess);
-
-
-
-//
-//let dashboard = new Dashboard();
-// dashboard.getData().then(r => {
-//     console.log(r);
-// })
+let dashboard = new Dashboard();
 
 
 if ('serviceWorker' in navigator) {

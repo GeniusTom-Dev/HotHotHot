@@ -21,7 +21,6 @@ export class DataAccess {
 
             request.onsuccess = (event) => {
                 this.db = event.target.result;
-                console.log(event.target.result);
                 resolve();
             };
         });
@@ -86,23 +85,43 @@ export class DataAccess {
             });
         }
     }
-    getFirstByTimestampRange(startTimestamp, endTimestamp) {
-        const transaction = this.db.transaction("temp", "readonly");
-        const objectStore = transaction.objectStore("temp");
-        const index = objectStore.index("timestamp");
-        const range = IDBKeyRange.bound(startTimestamp, endTimestamp);
-        const request = index.get(range);
 
-        return new Promise((resolve, reject) => {
-            request.onsuccess = (event) => {
-                resolve(request.result);
-            };
+    getFirstByTimestampRange(startTimestamp, endTimestamp, location) {
+        if (this.db) {
+            const transaction = this.db.transaction(["temp"], "readonly");
+            const objectStore = transaction.objectStore("temp");
 
-            request.onerror = (event) => {
-                reject(request.error);
-            };
-        });
+            // Créer une plage IDBKeyRange pour spécifier la plage de timestamps
+            const range = IDBKeyRange.bound(startTimestamp, endTimestamp);
 
+            // Ouvrir un curseur pour parcourir les éléments dans la plage de timestamps
+            const request = objectStore.index("timestamp").openCursor(range, "next");
+
+            return new Promise((resolve, reject) => {
+                request.onsuccess = (event) => {
+                    const cursor = event.target.result;
+
+                    if (cursor) {
+                        // Vérifier si "origin" est égal à "location"
+                        if (cursor.value.origin === location) {
+                            // Le curseur a trouvé le premier élément dans la plage qui correspond à "location"
+                            resolve(cursor.value);
+                        } else {
+                            // Si "origin" n'est pas égal à "location", passer au prochain élément
+                            cursor.continue();
+                        }
+                    } else {
+                        // Aucun élément trouvé dans la plage
+                        resolve(null);
+                    }
+                };
+
+                request.onerror = (event) => {
+                    reject(event.target.error);
+                };
+            });
+        }
     }
+
 
 }

@@ -1,4 +1,4 @@
-// import {Graph} from "../view/Graph";
+import {Graph} from "/src/view/Graph.js";
 
 export class Controller {
 
@@ -7,27 +7,20 @@ export class Controller {
         this.outTemperature = 0;
         this.dataAccess = dataAccess;
 
-
-        this.dataAccess.getAllItems().then(items => {
-            console.log("All items:", items);
-        }).catch(error => {
-            console.error("Error getting all items:", error);
-        })
-
-
         this.baliseInTemperature = document.getElementById("baliseInTemperature");
         this.baliseOutTemperature = document.getElementById("baliseOutTemperature");
 
-        this.temperatures = [];
-        // this.getTemperatures();
 
-        for (let i = 0; i < this.temperatures.length; i++) {
-            console.log(this.temperatures[i]);
-        }
+        const indoorGraph = new Graph('indoorLineChart');
+        this.getTemperatures("interieur").then(() => {
+            indoorGraph.drawGraph(this.indoorTemperatures);
+        });
 
-        const graph = new Graph('lineChart');
-        console.log('aaaaaaaaaaaa');
-        graph.drawGraph([0, 4, 7,8,9,10,11,12,13,14,15, 20, 2, 6, -6, 9, 10, 5, 15,12,13,-13,0, 4, 7,8,9,10,11,12,13,14,15, 20, 2, 6, -6, 9, 10, 5, 15,12,13,-13,0, 4, 7,8,9,10,11,12,13,14,15, 20, 2, 6, -6, 9, 10, 5, 15,12,13,-13]);
+        const outdoorGraph = new Graph('outdoorLineChart');
+        this.getTemperatures("exterieur").then(() => {
+            outdoorGraph.drawGraph(this.outdoorTemperatures);
+        });
+
 
     }
 
@@ -38,26 +31,40 @@ export class Controller {
         currentDate.setMilliseconds(0);
         let timestamps = [];
         for (let i = 0; i < 24; i++) {
-            for(let j = 0; j < 2; j+=1) {
+            for(let j = 0; j < 3; j+=1) {
                 const hourDate = new Date(currentDate);
                 hourDate.setHours(i);
-                if(j === 0) {
-                    hourDate.setMinutes(0);
-                }else {
-                    hourDate.setMinutes(30);
-                }
+                hourDate.setMinutes(j*20);
                 const timestamp = hourDate.getTime();
-                timestamps.push(timestamp);
+                timestamps.push(timestamp/1000);
             }
         }
+        console.log(timestamps);
         return timestamps;
     }
 
-    getTemperatures() {
+    async getTemperatures(location) {
         let timestamps = this.getTimeStamps();
-        for (let i = 0; i < timestamps.length-1; i++) {
-            this.temperatures.push(this.dataAccess.getFirstByTimestampRange(timestamps[i], timestamps[i+1]));
-        }
+        this.indoorTemperatures = [];
+        this.outdoorTemperatures = [];
+
+        let promises = timestamps.slice(0, -1).map((timestamp, i) => {
+            return this.dataAccess.getFirstByTimestampRange(timestamp, timestamps[i+1],location).then(item => {
+                if(item !== null) {
+                    console.log(item);
+                    if(location === "interieur") {
+                        this.indoorTemperatures.push(item["value"]);
+                    }else {
+                        this.outdoorTemperatures.push(item["value"]);
+                    }
+                }
+            });
+        });
+        await Promise.all(promises);
+    }
+
+    showTemperature() {
+        console.log(this.temperatures);
     }
 
     update(data) {
