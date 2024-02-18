@@ -10,7 +10,6 @@ export class DataAccess {
         const now = new Date();
         const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 1000;
         const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime() / 1000;
-        console.log(endOfDay);
         const request = objectStore.openCursor();
         request.onsuccess = (event) => {
             const cursor = event.target.result;
@@ -37,7 +36,6 @@ export class DataAccess {
 
             request.onupgradeneeded = (event) => {
                 this.db = event.target.result;
-                console.log(event.target.result);
                 this.initStore();
             };
 
@@ -54,7 +52,6 @@ export class DataAccess {
             objectStore.createIndex("origin", "origin", {unique: false});
             objectStore.createIndex("value", "value", {unique: false});
             objectStore.createIndex("timestamp", "timestamp", {unique: false});
-            console.log("Store created");
         }
     }
 
@@ -82,11 +79,11 @@ export class DataAccess {
                 .add(data);
 
             request.onsuccess = () => {
-                console.log(`New student added, email: ${request.result}`);
+                console.log(`donnée enregistrée : ${request.result}`);
             }
 
             request.onerror = (err) => {
-                console.error(`Error to add new student: ${err}`)
+                console.error(`Erreur lors de l'ajout de la donnée: ${err.target.errorCode}`)
             }
         }
     }

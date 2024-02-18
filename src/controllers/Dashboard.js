@@ -21,28 +21,6 @@ export class Dashboard {
 
     }
 
-    initLocation() {
-        return new Promise((resolve, reject) => {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const coords = position.coords.latitude + "," + position.coords.longitude;
-                    resolve(coords);
-                }, err => {
-                    reject('La géolocalisation a échoué: ' + err.message);
-                });
-            } else {
-                reject('La géolocalisation n\'est pas disponible');
-            }
-        });
-    }
-
-    async getData() {
-        const reponse = await fetch(this.callLink);
-        const data = await reponse.json();
-        const dataLocation = data.current.condition.text;
-        // console.log(dataLocation);
-    }
-
     initActions() {
         this.switchDashboardButton.onclick = () => {
             this.dashboard.style.display = 'flex';

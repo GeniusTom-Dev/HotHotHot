@@ -6,7 +6,7 @@
     <link href="/manifest.webmanifest" rel="manifest">
     <link href="/src/assets/output.css" rel="stylesheet">
     <link href="/src/assets/images/favicon.ico" rel="icon" type="image/vnd.icon">
-    <script src="src/script.js" type="module"></script>
+    <script src="../scriptDoc.js" type="module"></script>
 </head>
 
 <body class="background h-[100vh] p-2 flex xl:items-center justify-center">
@@ -16,7 +16,7 @@
     <nav class="xl:w-[15%] w-full xl:h-full xl:bg-gradient-to-b xl:from-[var(--top-navbar)] xl:to-[var(--bottom-navbar)] rounded-[20px] flex xl:block">
         <!-- Logo and Branding -->
         <div class="w-1/6 xl:w-full h-24 xl:bg-[var(--top-navbar-logo-background)] rounded-[20px] xl:rounded-tl-[20px] flex flex-col items-center justify-center">
-            <img alt="logo" class="w-12 h-12 rounded-full" src="src/assets/images/hothothot.jpg">
+            <img alt="logo" class="w-12 h-12 rounded-full" src="../assets/images/hothothot.jpg">
             <h1 aria-label="HotHotHot" class="text-lg md:text-xl lg:text-2xl">HotHotHot</h1>
         </div>
 
@@ -28,7 +28,7 @@
             </li>
             <li class="navbar selected">
                 <img alt="house icon" class="w-8 h-8 ml-4" src="/src/assets/images/docs.svg">
-                <a aria-label="Docs" class="ml-4" href="/docs.html">Docs</a>
+                <a aria-label="Docs" class="ml-4" href="/src/view/docs.html">Docs</a>
             </li>
             <li class="navbar">
                 <img alt="user icon" class="w-8 h-8 ml-4" src="/src/assets/images/user.svg">
@@ -99,7 +99,7 @@
 
         <!-- Add Button -->
         <div class="add-button fixed bottom-8 left-8 flex items-center justify-center bg-white text-black rounded-full w-14 h-14 cursor-pointer z-50 transition duration-300">
-            <img alt="download" class="w-2/5 h-2/5" src="src/assets/images/download.svg">
+            <img alt="download" class="w-2/5 h-2/5" src="../assets/images/download.svg">
         </div>
     </div>
 </div>

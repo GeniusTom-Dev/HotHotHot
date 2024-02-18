@@ -23,6 +23,7 @@ self.addEventListener('install', function (evt) {
             "src/view/Graph.js",
             "src/view/docs.html",
             "src/script.js",
+            "src/scriptDoc.js"
         ];
 
         let promises = files.map(file => {

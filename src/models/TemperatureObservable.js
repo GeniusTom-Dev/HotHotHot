@@ -20,8 +20,6 @@ export class TemperatureObservable {
     initWebsocket() {
         this.socket = new WebSocket(this.webSocketUrl);
 
-        console.log(this.socket)
-
         this.socket.onopen = (event) => {
             this.socket.send("Je viens d'arriver");
 
